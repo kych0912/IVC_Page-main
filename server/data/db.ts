@@ -1,14 +1,10 @@
-const mysql = require('mysql');
-const config = require('./config/key');
+import {db} from "./mysql";
+import {AdminUser} from "../model/user";
 
-const conn = mysql.createConnection({
-    host : config.IPv4,
-    port:config.port,
-    user :'ivcadmin',
-    password:'IVCinha1997!',
-    database:'ivc'
-});
-
-conn.connect();
-
-export const db = conn;
+export async function findUserByNameAndPassword (name: string, password: string):Promise<any> {
+    const query = `SELECT * FROM USER WHERE name = "${name}" AND password = "${password}"`;
+    db.query(query,(err: any, result: any) => {
+        if (err) throw err;
+        return result;
+    });
+}
