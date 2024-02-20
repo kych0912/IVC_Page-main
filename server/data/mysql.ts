@@ -1,12 +1,12 @@
-const mysql = require('mysql');
-const config = require('./config/key');
+const mysql = require('mysql2');
+import {key} from '../config/key';
 
-const conn = mysql.createConnection({
-    host : config.IPv4,
-    port:config.port,
-    user : config.user,
-    password : config.password,
-    database : config.database
+const pool = mysql.createPool({
+    host : key.IPv4,
+    port:key.port,
+    user : key.user,
+    password : key.password,
+    database : key.database,
 });
 
-export const db = mysql.createConnection(conn);
+export default pool;
