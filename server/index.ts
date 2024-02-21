@@ -1,4 +1,4 @@
-import express,{ Request, Response, NextFunction } from 'express';
+import express,{ Request, Response, NextFunction, } from 'express';
 import * as loginController from './controller/login';
 import db from './data/mysql';
 import bodyParser from 'body-parser';
@@ -27,3 +27,15 @@ app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
 });
 
 app.post('/login', loginController.login);
+
+
+app.use(function(req, res, next) {
+  res.status(404).send({
+    message:'Sorry cant find that!'
+  });
+});
+
+app.use(function (err:Error, req:Request, res:Response, next:NextFunction) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
