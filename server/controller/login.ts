@@ -7,7 +7,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
     const loginData:AdminUser = req.body;
 
     try{
-        const user: AdminUser = await userData.findUserByNameAndPassword(loginData);
+        const user = await userData.findUserByNameAndPassword(loginData);
 
         if (user) {
             const token = await userData.generateToken(user);
@@ -27,14 +27,19 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
 // export async function createSession(req: Request, res: Response) {
 
-export async function register(req: Request, res: Response) {
-    const { name, password } = req.body;
-    const user: AdminUser = await userData.createUser(name, password);
+export async function register(req: Request, res: Response,next: NextFunction) {
+    const user:AdminUser = req.body;
+    try{
+        const _response = await userData.createUser(user);
 
-    if (user) {
-        res.send("User already exists");
-    } else {
-        // userData.createUser(name, password);
-        res.send("User created");
+        if (!_response.affectedRows) {
+            res.send("User already exists");
+        } else {
+            // userData.createUser(name, password);
+            res.send("User created");
+        }
+    }
+    catch(e){
+        next(e);
     }
 }

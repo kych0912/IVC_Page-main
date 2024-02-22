@@ -26,7 +26,8 @@ app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
   res.send('welcome!');
 });
 
-app.post('/login', loginController.login);
+app.post('/api/admin/login', loginController.login);
+app.post('/api/admin/register', loginController.register);
 
 
 app.use(function(req, res, next) {

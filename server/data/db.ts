@@ -46,15 +46,26 @@ export async function generateToken(user:AdminUser):Promise<any>{
     
 }
 
-export async function createUser (name: string, password: string):Promise<any> {
-    const query = `INSERT INTO USER (name, password) VALUES ("${name}", "${password}")`;
+export async function createUser (user:AdminUser):Promise<any> {
 
-    const conn = await pool.getConnection();
 
-    conn.query(query,(err: any, result: any) => {
-        if(err) throw err;
-        return result;
+    const {name, password} = user;
+
+    const salt = await bcrypt.genSalt(saltRounds);
+    const saltedPassword = await bcrypt.hash(password, salt);
+
+    const query = `INSERT IGNORE INTO USER(name,password) VALUES("${name}", "${saltedPassword}")`;
+
+    const conn = await pool.getConnection((err:any) => {
+        if(err) rejects(err);
+        console.log('Connection established');
     });
+;
 
-    conn.release();
+    return new Promise((resolve, reject) => {
+        pool.query(query, (err: any, result: any) => {
+            if (err) reject(err);
+            resolve(result);
+        });
+    });
 }
