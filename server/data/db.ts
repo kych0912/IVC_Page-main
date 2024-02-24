@@ -95,3 +95,20 @@ export async function insertURL (url:string):Promise<any> {
         });
     });
 }
+
+export async function getURLLastest():Promise<any> {
+    const query = `SELECT * FROM submit_table ORDER BY edit_time DESC LIMIT 1`;
+
+    const conn = await pool.getConnection((err:any) => {
+        if(err) rejects(err);
+        console.log('Connection established');
+    });
+
+    return new Promise((resolve, reject) => {
+        pool.query(query, (err: any, result: any) => {
+            if (err) reject(err);
+            resolve(result);
+        });
+    }
+    );
+}

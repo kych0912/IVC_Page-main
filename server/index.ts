@@ -1,5 +1,7 @@
 import express,{ Request, Response, NextFunction, } from 'express';
 import * as loginController from './controller/login';
+import * as editController from './controller/edit';
+import * as clientController from './controller/client';
 import db from './data/mysql';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
@@ -28,7 +30,8 @@ app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
 
 app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
-app.post('/api/admin/editURL', loginController.editURL);
+app.post('/api/admin/editURL', editController.editURL);
+app.get('/api/admin/getURL', clientController.getURL);
 
 
 app.use(function(req, res, next) {

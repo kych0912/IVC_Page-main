@@ -61,14 +61,3 @@ export async function register(req: Request, res: Response,next: NextFunction) {
     }
 }
 
-export async function editURL(req: Request, res: Response,next: NextFunction) {
-    const url = req.body.url;
-    try{
-        const _response = await userData.insertURL(url);
-
-        res.status(200).json({message: "URL inserted",success: true});
-    }
-    catch(e){
-        next(e);
-    }
-}
