@@ -7,12 +7,29 @@ export async function login(req: Request, res: Response, next: NextFunction) {
     const loginData:AdminUser = req.body;
 
     try{
-        const user = await userData.findUserByNameAndPassword(loginData);
+        const user = await userData.findUserByName(loginData);
 
         if (user) {
-            const token = await userData.generateToken(user);
+            const name = user.name;
+            const password = user.password;
+
+            const isMatch = await userData.comparePassword(loginData.password, password);
+
+            if (!isMatch) {
+                return res.json({
+                    message: "Wrong password",
+                });
+            }
+
+            const tokenUser:AdminUser = {
+                name: name,
+                password: password
+            }
+
+            const token = await userData.generateToken(tokenUser);
 
             res.cookie("x_auth", token).status(200).json({ loginSuccess: true, userId: user.name});
+
         } else {
             res.json({
                 message: "User not found",
@@ -38,6 +55,18 @@ export async function register(req: Request, res: Response,next: NextFunction) {
             // userData.createUser(name, password);
             res.send("User created");
         }
+    }
+    catch(e){
+        next(e);
+    }
+}
+
+export async function editURL(req: Request, res: Response,next: NextFunction) {
+    const url = req.body.url;
+    try{
+        const _response = await userData.insertURL(url);
+
+        res.status(200).json({message: "URL inserted",success: true});
     }
     catch(e){
         next(e);

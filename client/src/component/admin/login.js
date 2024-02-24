@@ -27,7 +27,7 @@ export default function Login(){
         const response = await getLogin(id,password);
 
         if(response.loginSuccess){
-            navigate('/');
+            navigate('/admin/edit');
         }
         else{
             alert('로그인 실패');

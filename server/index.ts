@@ -28,6 +28,7 @@ app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
 
 app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
+app.post('/api/admin/editURL', loginController.editURL);
 
 
 app.use(function(req, res, next) {

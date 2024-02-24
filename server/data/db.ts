@@ -5,10 +5,10 @@ import jwt from 'jsonwebtoken';
 import {AdminUser} from "../model/user";
 import { rejects } from "assert";
 
-export async function findUserByNameAndPassword (user:AdminUser):Promise<any> {
-    const {name, password} = user||{};
+export async function findUserByName(user:AdminUser):Promise<any> {
+    const {name, password} = user;
 
-    const query = `SELECT * FROM USER WHERE name="${name}" AND password="${password}"`;
+    const query = `SELECT * FROM USER WHERE name="${name}"`;
 
     const conn = await pool.getConnection((err:any) => {
         if(err) rejects(err);
@@ -19,17 +19,24 @@ export async function findUserByNameAndPassword (user:AdminUser):Promise<any> {
         pool.query(query, (err: any, result: any) => {
             if (err) reject(err);
             resolve(result[0]);
-          
         });
     });
+}
 
+export function comparePassword(password:string, hash:string):Promise<any>{
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(password, hash, (err, isMatch) => {
+            if(err) reject(err);
+            resolve(isMatch);
+        });
+    });
 }
 
 export async function generateToken(user:AdminUser):Promise<any>{
 
     const {name, password} = user;
 
-    const token = jwt.sign(password.toString(),'secretToken');
+    const token = jwt.sign(name.toString(),'secretToken');
     const query = `INSERT INTO session_table VALUES("${token}", "${name}")`;
 
     const conn = await pool.getConnection((err:any) => {
@@ -55,6 +62,25 @@ export async function createUser (user:AdminUser):Promise<any> {
     const saltedPassword = await bcrypt.hash(password, salt);
 
     const query = `INSERT IGNORE INTO USER(name,password) VALUES("${name}", "${saltedPassword}")`;
+
+    const conn = await pool.getConnection((err:any) => {
+        if(err) rejects(err);
+        console.log('Connection established');
+    });
+;
+
+    return new Promise((resolve, reject) => {
+        pool.query(query, (err: any, result: any) => {
+            if (err) reject(err);
+            resolve(result);
+        });
+    });
+}
+
+export async function insertURL (url:string):Promise<any> {
+
+    const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const query = `INSERT INTO submit_table(url,edit_time) VALUES("${url}", "${date}")`;
 
     const conn = await pool.getConnection((err:any) => {
         if(err) rejects(err);

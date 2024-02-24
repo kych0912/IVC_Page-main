@@ -4,6 +4,7 @@ import Main from '../src/component/main'
 import Faq from '../src/component/FAQ'
 import Recruit from '../src/component/Recruit'
 import Login from "./component/admin/login"
+import Admin from "./component/admin/admin"
 import { Outlet } from 'react-router-dom';
 
 import {
@@ -43,6 +44,7 @@ function App() {
 
         <Route element={<WithoutNav/>}>
           <Route path="/admin" element={<Login/>}/>
+          <Route path="/admin/edit" element={<Admin/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
