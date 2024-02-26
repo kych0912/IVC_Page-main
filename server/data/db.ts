@@ -112,3 +112,37 @@ export async function getURLLastest():Promise<any> {
     }
     );
 }
+
+export async function getFileLastest():Promise<any> {
+    const query = `SELECT * FROM file_table ORDER BY time DESC LIMIT 1`;
+
+    const conn = await pool.getConnection((err:any) => {
+        if(err) rejects(err);
+        console.log('Connection established');
+    });
+
+    return new Promise((resolve, reject) => {
+        pool.query(query, (err: any, result: any) => {
+            if (err) reject(err);
+            resolve(result);
+        });
+    });
+};
+
+export async function insertFilePath(path:string, filename:string):Promise<any> {
+
+    const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const query = `INSERT INTO file_table(dir,time,filename) VALUES("${path}", "${date}", "${filename})`;
+
+    const conn = await pool.getConnection((err:any) => {
+        if(err) rejects(err);
+        console.log('Connection established');
+    });
+
+    return new Promise((resolve, reject) => {
+        pool.query(query, (err: any, result: any) => {
+            if (err) reject(err);
+            resolve(result);
+        });
+    });
+};

@@ -1,4 +1,5 @@
 import express,{ Request, Response, NextFunction, } from 'express';
+import multer from 'multer';
 import * as loginController from './controller/login';
 import * as editController from './controller/edit';
 import * as clientController from './controller/client';
@@ -16,6 +17,21 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 
+app.use(express.static(__dirname));
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'server/uploads/')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = new Date().toISOString().replace(/:/g, '-');
+    cb(null, file.originalname + '-' + uniqueSuffix)
+  }
+})
+
+const upload = multer({ storage: storage });
+
+
 app.listen(port,()=>{
   console.log(`
     ################################################
@@ -32,6 +48,8 @@ app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
 app.post('/api/admin/editURL', editController.editURL);
 app.get('/api/admin/getURL', clientController.getURL);
+app.get('/api/admin/getFile', clientController.getFilePath);
+app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile)
 
 
 app.use(function(req, res, next) {

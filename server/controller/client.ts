@@ -12,3 +12,14 @@ export async function getURL(req: Request, res: Response,next: NextFunction) {
         next(e);
     }
 }
+
+export async function getFilePath(req: Request, res: Response,next: NextFunction) {
+    try{
+        const _response = await userData.getFileLastest();
+        console.log(_response)
+        res.download(_response[0].dir);
+    }
+    catch(e){
+        next(e);
+    }
+}
