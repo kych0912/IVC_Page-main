@@ -35,8 +35,6 @@ export async function editURL(req: Request, res: Response,next: NextFunction) {
 export async function uploadFile(req: Request, res: Response,next: NextFunction) {
     const file = req.file;
 
-    console.log(file);
-
     if(!file){
         return res.status(400).json(util.fail(400,"No file uploaded"));
     }

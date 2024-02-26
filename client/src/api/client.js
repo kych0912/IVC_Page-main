@@ -9,3 +9,13 @@ export async function getURL() {
         return e.response;
     }
 }
+
+export async function downloadFile() {
+    try{
+        const _response = await axios.get(`/api/admin/getFile`, {responseType : 'blob'});
+        return _response.data;
+    }
+    catch(e){
+        return e.response;
+    }
+}

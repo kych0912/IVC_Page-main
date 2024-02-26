@@ -13,11 +13,14 @@ export async function getURL(req: Request, res: Response,next: NextFunction) {
     }
 }
 
-export async function getFilePath(req: Request, res: Response,next: NextFunction) {
+export async function getFile(req: Request, res: Response,next: NextFunction) {
     try{
         const _response = await userData.getFileLastest();
-        console.log(_response)
-        res.download(_response[0].dir);
+
+        const filename = _response[0].filename;
+        const file = __dirname + "/../uploads/" + filename;
+
+        res.download(file);
     }
     catch(e){
         next(e);

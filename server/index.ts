@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = new Date().toISOString().replace(/:/g, '-');
-    cb(null, file.originalname + '-' + uniqueSuffix)
+    cb(null, file.originalname)
   }
 })
 
@@ -48,7 +48,7 @@ app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
 app.post('/api/admin/editURL', editController.editURL);
 app.get('/api/admin/getURL', clientController.getURL);
-app.get('/api/admin/getFile', clientController.getFilePath);
+app.get('/api/admin/getFile', clientController.getFile);
 app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile)
 
 

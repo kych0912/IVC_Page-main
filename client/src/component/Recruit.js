@@ -1,16 +1,15 @@
-import {Box,Typography,Button,Link,Skeleton} from '@mui/material';
+import {Box,Typography,Button,Link,Skeleton, CircularProgress} from '@mui/material';
 import React, { useEffect, useState } from "react";
-import {submitLink} from "../Variable/index";
-import {getURL} from "../api/client";
+import {getURL,downloadFile } from "../api/client";
 
 export default function Main(){
     const [loading,setLoading] = useState(false);
+    const [downloadLoading,setDownloadLoading] = useState(false);
     const [url,setUrl] = useState('');
 
     const FetchURL = async () => {
         setLoading(true);
         const _response = await getURL();
-        console.log(_response)
 
         if(_response.success){
             setUrl(prev=>prev=_response.message[0].url);
@@ -21,13 +20,24 @@ export default function Main(){
         setLoading(false);
     }
 
+    const Download = async () => {
+        setDownloadLoading(true);
+        const _response = await downloadFile();
+
+        const url = window.URL.createObjectURL(new Blob([_response]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'recruit.docx');
+        link.setAttribute('id', 'tempLink');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setDownloadLoading(false);
+    }
+
     useEffect(()=>{
         FetchURL();
     },[])
-
-    useEffect(()=>{
-        console.log(url);
-    },[url])
 
     return(
         <Box className="App-header" sx={{ width:'100%',backgroundColor:'black',height:'100vh'}}>
@@ -72,13 +82,18 @@ export default function Main(){
                         </Box>
                         :
                         <Box sx={{pr:{xs:3,md:5}}}>
-                            <Link underline="none" color="inherit" onClick={() => window.open(url)}>
-                                <Button sx={{border:1,color:'white',padding:2}}>
-                                    <Typography color="white" sx={{fontSize:{xs:20,md:30},fontFamily:'SUIT Variable',fontWeight:"bold"}}>
+                            <Button sx={{border:1,color:'white',padding:2}} onClick={() => Download()}>
+                                {
+                                    downloadLoading?
+                                    <Box sx={{display:"flex",alignItems:"center",justifyContent:'center',width:{xs:'130px',md:'200px'},height:{xs:'30px',md:'45px'}}}>
+                                        <CircularProgress size={35}/>
+                                    </Box>
+                                    :
+                                    <Typography color="white" sx={{fontSize:{xs:20,md:30},fontFamily:'SUIT Variable',fontWeight:"bold",width:{xs:'130px',md:'200px'}}}>
                                         지원서 다운로드
                                     </Typography>
-                                </Button>
-                            </Link>
+                                }
+                            </Button>
                         </Box>
                     }
 
@@ -96,9 +111,9 @@ export default function Main(){
                         </Box>
                         :
                         <Box>
-                            <Link underline="none" color="inherit" href={submitLink}>
+                            <Link underline="none" color="inherit" onClick={()=>window.open("https://"+url)}>
                                 <Button sx={{border:1,color:'white',padding:2}}>
-                                    <Typography color="white" sx={{fontSize:{xs:20,md:30},fontFamily:'SUIT Variable',fontWeight:"bold"}}>
+                                    <Typography color="white" sx={{fontSize:{xs:20,md:30},fontFamily:'SUIT Variable',fontWeight:"bold",width:{xs:'130px',md:'200px'}}}>
                                         지원서 제출
                                     </Typography>
                                 </Button>
