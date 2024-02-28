@@ -26,3 +26,20 @@ export async function getFile(req: Request, res: Response,next: NextFunction) {
         next(e);
     }
 }
+
+export async function Auth(req: Request, res: Response,next: NextFunction) {
+    try{
+        const token:string = req.cookies.x_auth;
+        const _response = await userData.findSessionByToken(token);
+
+        if(!_response){
+            return res.status(401).json({message: "Auth Failed",success: false});
+        }
+
+
+        res.status(200).json({message: "Auth Success",success: true});
+    }
+    catch(e){
+        next(e);
+    }
+}

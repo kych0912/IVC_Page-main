@@ -19,3 +19,13 @@ export async function downloadFile() {
         return e.response;
     }
 }
+
+export async function auth(){
+    try{
+        const _response = axios.get(`/api/admin/auth`);
+        return _response;
+    }
+    catch(e){
+        return e;
+    }
+}

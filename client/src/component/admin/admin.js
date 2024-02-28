@@ -1,8 +1,9 @@
 import { Box, Typography,Input, CircularProgress, Button } from "@mui/material"
 import { useState } from "react"
 import { editURL } from "../../api/login"
+import Auth from "../../hoc/auth"
 
-export default function Admin(){
+function Admin(){
     const [url,setUrl] = useState('')
     const [loading,setLoading] = useState(false)
 
@@ -54,3 +55,5 @@ export default function Admin(){
         </Box>
     )
 }
+
+export default Auth(Admin);

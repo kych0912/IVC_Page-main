@@ -65,6 +65,7 @@ export default function Main(){
                         </Typography>
                     </Box>
                 </Box>
+                
                 <Box sx={{display:'flex'}}>
 
                     {

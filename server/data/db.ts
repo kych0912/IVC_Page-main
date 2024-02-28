@@ -67,7 +67,7 @@ export async function createUser (user:AdminUser):Promise<any> {
         if(err) rejects(err);
         console.log('Connection established');
     });
-;
+
 
     return new Promise((resolve, reject) => {
         pool.query(query, (err: any, result: any) => {
@@ -76,6 +76,24 @@ export async function createUser (user:AdminUser):Promise<any> {
         });
     });
 }
+
+export async function findSessionByToken(token:string):Promise<any> {
+    const query = `SELECT * FROM session_table WHERE session="${token}"`;
+
+    
+    const conn = await pool.getConnection((err:any) => {
+        if(err) rejects(err);
+        console.log('Connection established');
+    });
+
+    return new Promise((resolve, reject) => {
+        pool.query(query, (err: any, result: any) => {
+            if (err) reject(err);
+            resolve(result[0]);
+        });
+    });
+}
+
 
 export async function insertURL (url:string):Promise<any> {
 

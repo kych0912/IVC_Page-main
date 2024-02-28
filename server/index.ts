@@ -50,6 +50,7 @@ app.post('/api/admin/editURL', editController.editURL);
 app.get('/api/admin/getURL', clientController.getURL);
 app.get('/api/admin/getFile', clientController.getFile);
 app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile)
+app.get('/api/admin/auth', clientController.Auth);
 
 
 app.use(function(req, res, next) {
