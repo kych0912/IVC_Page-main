@@ -2,6 +2,9 @@ import { Box, Typography,Input, CircularProgress, Button } from "@mui/material"
 import { useState } from "react"
 import { editURL } from "../../api/login"
 import Auth from "../../hoc/auth"
+import Header from "./adminComponent/header"
+import Navigator from "./adminComponent/Navigator"
+import Paperbase from "./adminComponent/PaperBase"
 
 function Admin(){
     const [url,setUrl] = useState('')
@@ -27,9 +30,11 @@ function Admin(){
     }
 
     return(
-        <Box sx={{width:'100%',backgroundColor:'#3D3D3D',height:'100vh'}}>
+        <Box sx={{width:'100%',backgroundColor:'#eaeff1',height:'100vh'}}>
+            <Paperbase/>
+
             <Box sx={{display:"flex",justifyContent:"center",alignItems:"center",height:'100%',flexDirection:"column"}}>
-                <Typography sx={{fontFamily:'SUIT Variable',fontWeight:"bold",color:"white",fontSize:'50px'}}>
+                <Typography sx={{fontFamily:'SUIT Variable',fontWeight:"bold",color:"black",fontSize:'50px'}}>
                     EDIT SUBMIT URL
                 </Typography>
 
