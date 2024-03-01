@@ -31,8 +31,6 @@ function Admin(){
 
     return(
         <Box sx={{width:'100%',backgroundColor:'#eaeff1',height:'100vh'}}>
-            <Paperbase/>
-
             <Box sx={{display:"flex",justifyContent:"center",alignItems:"center",height:'100%',flexDirection:"column"}}>
                 <Typography sx={{fontFamily:'SUIT Variable',fontWeight:"bold",color:"black",fontSize:'50px'}}>
                     EDIT SUBMIT URL

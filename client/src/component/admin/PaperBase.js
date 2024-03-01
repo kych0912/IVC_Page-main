@@ -3,10 +3,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import Auth from "../../hoc/auth"
 import Navigator from './adminComponent/Navigator';
 import Header from './adminComponent/header';
+import { Outlet } from 'react-router-dom';
 
 let theme = createTheme({
   palette: {
@@ -140,21 +140,12 @@ theme = {
         },
       },
     },
-    MuiAvatar: {
-      styleOverrides: {
-        root: {
-          width: 32,
-          height: 32,
-        },
-      },
-    },
   },
 };
 
 const drawerWidth = 256;
 
-export default function Paperbase(props) {
-  const { Content } = props;
+function Paperbase(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
@@ -187,10 +178,12 @@ export default function Paperbase(props) {
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header onDrawerToggle={handleDrawerToggle} />
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
-            {Content ? <Content /> : null}
+            <Outlet/>
           </Box>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
+
+export default Auth(Paperbase);

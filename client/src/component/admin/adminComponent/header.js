@@ -24,7 +24,7 @@ function Header(props) {
         color="primary"
         position="sticky"
         elevation={0}
-        sx={{ zIndex: 1 }}
+        sx={{ zIndex: 1,backgroundColor:'primary' }}
       >
         <Toolbar>
           <Grid container alignItems="center" spacing={1}>
