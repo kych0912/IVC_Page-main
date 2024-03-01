@@ -164,3 +164,19 @@ export async function insertFilePath(path:string, filename:string):Promise<any> 
         });
     });
 };
+
+export async function deleteSession(token:string):Promise<any> {
+    const query = `DELETE FROM session_table WHERE session="${token}"`;
+
+    const conn = await pool.getConnection((err:any) => {
+        if(err) rejects(err);
+        console.log('Connection established');
+    });
+
+    return new Promise((resolve, reject) => {
+        pool.query(query, (err: any, result: any) => {
+            if (err) reject(err);
+            resolve(result);
+        });
+    });
+}

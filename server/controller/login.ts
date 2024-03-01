@@ -61,3 +61,14 @@ export async function register(req: Request, res: Response,next: NextFunction) {
     }
 }
 
+export async function logOut(req: Request, res: Response,next: NextFunction) {
+    try{
+        const token = req.cookies.x_auth;
+        const _response = await userData.deleteSession(token);
+
+        res.clearCookie("x_auth").status(200).json({message: "Logout success",success: true});
+    }
+    catch(e){
+        next(e);
+    }
+}

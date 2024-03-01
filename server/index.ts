@@ -47,10 +47,12 @@ app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
 app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
 app.post('/api/admin/editURL', editController.editURL);
+app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile);
+
 app.get('/api/admin/getURL', clientController.getURL);
 app.get('/api/admin/getFile', clientController.getFile);
-app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile)
 app.get('/api/admin/auth', clientController.Auth);
+app.get('/api/admin/logout', loginController.logOut);
 
 
 app.use(function(req, res, next) {
