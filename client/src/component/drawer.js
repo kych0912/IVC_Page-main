@@ -47,8 +47,9 @@ export default function TemporaryDrawer() {
         role="presentation"
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
+        style={{backgroundColor:'#3D3D3D'}}
         >
-        <List sx={{backgroundColor:"gray"}}>
+        <List >
             {['Media', 'Contact', 'Recruit'].map((text, index) => (
             <ListItem key={text} disablePadding>
                 <ListItemButton >
@@ -58,7 +59,7 @@ export default function TemporaryDrawer() {
                             noWrap
                             component="div"
                             color ="white"
-                            sx={{ display: { xs: 'block', sm: 'block' },pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold",width:'100%'}}
+                            sx={{ display: { xs: 'block', sm: 'block' },fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold",width:'100%'}}
                         >
                             {text}
                         </Typography>
@@ -80,6 +81,7 @@ export default function TemporaryDrawer() {
             anchor={'top'}
             open={state['top']}
             onClose={toggleDrawer('top', false)}
+            color="primary"
             >
             {list('top')}
             </Drawer>

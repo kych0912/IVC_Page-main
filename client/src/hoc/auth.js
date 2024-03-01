@@ -8,7 +8,7 @@ export default function withAuth(SpecificComponent, redirectTo = "/admin") {
     function AuthCheck() {
         const navigate = useNavigate();
         const { data, isLoading, isError } = useQuery('auth', auth,{
-            retry: false, 
+            retry: 3, 
           });
     
         if (isLoading) {

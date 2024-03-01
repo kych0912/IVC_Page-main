@@ -7,13 +7,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
 import DnsRoundedIcon from '@mui/icons-material/DnsRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
-import TimerIcon from '@mui/icons-material/Timer';
-import SettingsIcon from '@mui/icons-material/Settings';
-import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
+import {logOut} from '../../../api/login';
 
 const categories = [
   {
@@ -22,15 +19,15 @@ const categories = [
       {
         id: '수정',
         icon: <PeopleIcon />,
-        active: true,
+        active: false,
       },
-      { id: '올린 파일', icon: <DnsRoundedIcon /> },
+      { id: '올린 파일', icon: <DnsRoundedIcon />,active:false },
     ],
   },
   {
     id: 'User',
     children: [
-      { id: 'LogOut', icon: <LogoutIcon /> },
+      { id: 'LOGOUT', icon: <LogoutIcon /> },
     ],
   },
 ];
@@ -49,6 +46,17 @@ const itemCategory = {
   py: 1.5,
   px: 3,
 };
+
+const handleLogout = async () => {
+    const _response = await logOut();
+    if(_response.success){
+        window.location.href = '/';
+    }
+    else{
+        alert('로그아웃에 실패했습니다.');
+    }
+}
+
 
 export default function Navigator(props) {
   const { ...other } = props;

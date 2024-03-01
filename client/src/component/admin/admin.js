@@ -4,7 +4,7 @@ import { editURL } from "../../api/login"
 import Auth from "../../hoc/auth"
 import Header from "./adminComponent/header"
 import Navigator from "./adminComponent/Navigator"
-import Paperbase from "./adminComponent/PaperBase"
+import Paperbase from "./PaperBase"
 
 function Admin(){
     const [url,setUrl] = useState('')

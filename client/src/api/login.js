@@ -27,3 +27,13 @@ export async function editURL(url){
         return e.response;
     }
 }
+
+export async function logOut(){
+    try{
+        const _response = await axios.get(`/api/admin/logout`);
+        return _response;
+    }
+    catch(e){
+        return e;
+    }
+}

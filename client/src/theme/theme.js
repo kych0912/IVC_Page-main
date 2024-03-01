@@ -9,7 +9,7 @@ const theme = createTheme({
         // contrastText: main값을 통해 계산됨
       },
       gray:{
-        main:'#E8E8E8',
+        main:'#D6D6D6',
       },
     },
     typhography: {

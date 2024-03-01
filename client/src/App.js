@@ -4,7 +4,7 @@ import Main from '../src/component/main'
 import Faq from '../src/component/FAQ'
 import Recruit from '../src/component/Recruit'
 import Login from "./component/admin/login"
-import Admin from "./component/admin/admin"
+import Paperbase from './component/admin/PaperBase';
 import { Outlet } from 'react-router-dom';
 
 import {
@@ -50,7 +50,7 @@ function App() {
 
           <Route path="/admin" element={<WithoutNav/>}>
             <Route index element={<Login/>}/>
-            <Route path="edit" element={<Admin/>}/>
+            <Route path="edit" element={<Paperbase/>}/>
           </Route>
 
         </Routes>
