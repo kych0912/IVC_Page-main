@@ -147,11 +147,20 @@ const drawerWidth = 256;
 
 function Paperbase(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [tabsValue,setTabsValue] = React.useState(0);
   const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleTabsValue = (event, newValue) => {  
+    setTabsValue(newValue);
+  }
+
+  React.useEffect(()=>{
+    console.log("tabsValue",tabsValue);
+  },[tabsValue])
 
   return (
     <ThemeProvider theme={theme}>
@@ -176,7 +185,7 @@ function Paperbase(props) {
           />
         </Box>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <Header onDrawerToggle={handleDrawerToggle} />
+          <Header onDrawerToggle={handleDrawerToggle} handleTabsValue={handleTabsValue}/>
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
             <Outlet/>
           </Box>

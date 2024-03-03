@@ -5,7 +5,7 @@ import Faq from '../src/component/FAQ'
 import Recruit from '../src/component/Recruit'
 import Login from "./component/admin/login"
 import Paperbase from './component/admin/PaperBase';
-import Admin from './component/admin/admin';
+import Admin from './component/admin/adminComponent/editURL';
 import { Outlet } from 'react-router-dom';
 
 import {

@@ -1,4 +1,4 @@
-import {Box, Typography, Input,Button} from '@mui/material';
+import {Box, Typography, TextField,Button} from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect, useState } from 'react';
 import { getLogin } from '../../api/login';
@@ -42,15 +42,34 @@ export default function Login(){
 
     return(
         <Box sx={{width:'100%',backgroundColor:'#3D3D3D',height:'100vh'}}>
-            <Box sx={{display:"flex",justifyContent:"center",alignItems:"center",height:'100%',flexDirection:"column"}}>
+            <Box sx={{display:"flex",justifyContent:"center",alignItems:"center",height:'100%',flexDirection:"column",mx:5}}>
                 <Typography sx={{fontFamily:'SUIT Variable',fontWeight:"bold",color:"white",fontSize:'50px'}}>
-                    ADMIN Login
+                    Login
                 </Typography>
 
                 <form>
-                    <Input onChange={handleId} sx={{width:'100%',fontFamily:'Pretendard Variable',fontWeight:'600',fontSize:'22px'}}/>
-                    <Input onChange={handlePassword} sx={{width:'100%',fontFamily:'Pretendard Variable',fontWeight:'600',fontSize:'22px'}}/>
-
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                        onChange = {handleId}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                        onChange = {handlePassword}
+                    />
                     <Button onClick = {handleSubmit} disabled={disabled} type = "submit" variant="contained" color="primary" sx={{width:'100%',height:'40px',borderRadius:'10px',boxShadow:0,my:2}}>
                         <Typography sx={{fontFamily:'Pretendard Variable',fontSize:'16px',fontWeight:"bold"}}>
                             로그인
