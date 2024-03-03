@@ -6,7 +6,8 @@ import Box from '@mui/material/Box';
 import Auth from "../../hoc/auth"
 import Navigator from './adminComponent/Navigator';
 import Header from './adminComponent/header';
-import { Outlet } from 'react-router-dom';
+import Url from "./adminComponent/editURL"
+import File from "./adminComponent/editFile"
 
 let theme = createTheme({
   palette: {
@@ -145,6 +146,24 @@ theme = {
 
 const drawerWidth = 256;
 
+function TabPanel(props) {
+  const { children,value, index, ...other } = props;
+
+  return (
+    <Box 
+      component="main" 
+      sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}
+      role="tabpanel"
+      hidden={value !== index}
+      aria-labelledby={`simple-tab-${index}`}
+    >
+      {value === index && (
+        children
+      )}
+    </Box>
+  );
+}
+
 function Paperbase(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [tabsValue,setTabsValue] = React.useState(0);
@@ -157,10 +176,6 @@ function Paperbase(props) {
   const handleTabsValue = (event, newValue) => {  
     setTabsValue(newValue);
   }
-
-  React.useEffect(()=>{
-    console.log("tabsValue",tabsValue);
-  },[tabsValue])
 
   return (
     <ThemeProvider theme={theme}>
@@ -185,10 +200,13 @@ function Paperbase(props) {
           />
         </Box>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <Header onDrawerToggle={handleDrawerToggle} handleTabsValue={handleTabsValue}/>
-          <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
-            <Outlet/>
-          </Box>
+          <Header onDrawerToggle={handleDrawerToggle} handleTabsValue={handleTabsValue} tabsValue={tabsValue}/>
+            <TabPanel value={tabsValue} index={0}>
+              <Url/>
+            </TabPanel>
+            <TabPanel value={tabsValue} index={1}>
+              <File/>
+            </TabPanel>
         </Box>
       </Box>
     </ThemeProvider>
