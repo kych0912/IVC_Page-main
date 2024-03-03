@@ -22,6 +22,11 @@ const util = {
 
 export async function editURL(req: Request, res: Response,next: NextFunction) {
     const url = req.body.url;
+
+    if(!url){
+        return res.status(400).json(util.fail(400,"No url inserted"));
+    }
+
     try{
         const _response = await userData.insertURL(url);
 

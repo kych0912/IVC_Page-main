@@ -3,13 +3,12 @@ import Divider from '@mui/material/Divider';
 import { useState } from "react"
 import { editURL } from "../../../api/login"
 import Auth from "../../../hoc/auth"
-import Header from "./header"
-import Navigator from "./Navigator"
-import Paperbase from "../PaperBase"
+import Upload from "./fileUpload";
 
 function Admin(){
     const [url,setUrl] = useState('')
     const [loading,setLoading] = useState(false)
+    const [file,setFile] = useState('');
 
     const handleURL = (e) =>{
         setUrl(e.target.value);
@@ -41,29 +40,13 @@ function Admin(){
                 <Typography sx={{ my: 1,fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem' }} color="text.secondary" >
                     파일 업로드
                 </Typography>
-
-                <form>
-                    <InputBase onChange={handleURL} 
-                        inputProps={{
-                            style:{
-                                padding:0,
-                            }
-                        }}
-                        sx={{
-                            width:"100%",
-                            fontFamily:'SUIT Variable',
-                            border:"0.0625rem solid rgb(210, 214, 218)"
-                            ,borderRadius:'8px'
-                            ,p:'0.5rem'
-                        }}
-                        required={true}
-                    />
-                    <Button disabled={!url} onClick = {handleSubmit} type = "submit" variant="contained" color="primary" sx={{width:'100%',height:'35px',borderRadius:'10px',boxShadow:0,my:2}}>
-                        <Typography sx={{fontFamily:'Pretendard Variable',fontSize:'16px',fontWeight:"bold"}}>
-                            지원서 파일 수정
-                        </Typography>
-                    </Button> 
-                </form>
+            
+                <Upload file={file} setFile={setFile}/>   
+                <Button disabled={!url} onClick = {handleSubmit} type = "submit" variant="contained" color="primary" sx={{width:'100%',height:'35px',borderRadius:'10px',boxShadow:0,my:2}}>
+                    <Typography sx={{fontFamily:'Pretendard Variable',fontSize:'16px',fontWeight:"bold"}}>
+                        지원서 파일 수정
+                    </Typography>
+                </Button> 
 
                 
                 {
@@ -74,7 +57,7 @@ function Admin(){
                     :
                     ""
                 }
-            </Box>           
+            </Box>        
         </Paper>
     )
 }
