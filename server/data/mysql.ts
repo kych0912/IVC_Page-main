@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 import {key} from '../config/key';
 
 const pool = mysql.createPool({

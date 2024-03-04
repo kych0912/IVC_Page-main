@@ -1,33 +1,31 @@
 import { Box, Typography,InputBase, CircularProgress, Button,Toolbar,Grid,TextField, Paper, Tooltip,IconButton } from "@mui/material"
 import Divider from '@mui/material/Divider';    
-import { useState } from "react"
-import { editURL } from "../../../api/login"
+import { useEffect, useState } from "react"
 import Auth from "../../../hoc/auth"
 import Upload from "./fileUpload";
 
 function Admin(){
-    const [url,setUrl] = useState('')
     const [loading,setLoading] = useState(false)
     const [file,setFile] = useState('');
 
-    const handleURL = (e) =>{
-        setUrl(e.target.value);
-    }
-
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
-        setLoading(true);
-        const response = await editURL(url);
+        // setLoading(true);
+        // const response = await editURL(url);
 
-        if(response.success){
-            alert('수정 성공');
-        }
-        else{
-            alert('수정 실패');
-        }
-        setLoading(false);
+        // if(response.success){
+        //     alert('수정 성공');
+        // }
+        // else{
+        //     alert('수정 실패');
+        // }
+        // setLoading(false);
     }
+
+    useEffect(()=>{
+        console.log(file);
+    },[file])
 
     return(
         <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}> 
@@ -42,7 +40,7 @@ function Admin(){
                 </Typography>
             
                 <Upload file={file} setFile={setFile}/>   
-                <Button disabled={!url} onClick = {handleSubmit} type = "submit" variant="contained" color="primary" sx={{width:'100%',height:'35px',borderRadius:'10px',boxShadow:0,my:2}}>
+                <Button disabled={!file} onClick = {handleSubmit} type = "submit" variant="contained" color="primary" sx={{width:'100%',height:'35px',borderRadius:'10px',boxShadow:0,my:2}}>
                     <Typography sx={{fontFamily:'Pretendard Variable',fontSize:'16px',fontWeight:"bold"}}>
                         지원서 파일 수정
                     </Typography>

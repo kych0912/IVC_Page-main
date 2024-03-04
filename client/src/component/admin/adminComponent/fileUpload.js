@@ -53,9 +53,9 @@ export default function Navbar(props) {
             alert(`docx 파일만 가능합니다.`);
         } else {
             try {
-                const data = await encodeFileToBase64(file);
+                // const data = await encodeFileToBase64(file);
 
-                setFile((prev) => [...prev, data ]);
+                setFile((prev) => [...prev, file ]);
             } catch (error) {
                 console.error(error);
             }
