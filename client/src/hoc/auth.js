@@ -9,6 +9,8 @@ export default function withAuth(SpecificComponent, redirectTo = "/admin") {
         const navigate = useNavigate();
         const { data, isLoading, isError } = useQuery('auth', auth,{
             retry: 3, 
+            retryDelay: 1000,
+            staleTime: 10000
           });
     
         if (isLoading) {

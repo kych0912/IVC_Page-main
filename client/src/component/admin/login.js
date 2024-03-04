@@ -1,9 +1,8 @@
 import {Box, Typography, TextField,Button} from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getLogin } from '../../api/login';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
 
 export default function Login(){
     const [id,setId] = useState('');
@@ -35,10 +34,6 @@ export default function Login(){
         }
         setLoading(false);
     }
-
-    useEffect(()=>{
-        console.log(loading);
-    },[loading])
 
     return(
         <Box sx={{width:'100%',backgroundColor:'#009be5',height:'100vh'}}>
