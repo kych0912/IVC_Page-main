@@ -27,7 +27,7 @@ export default function Main(){
         const url = window.URL.createObjectURL(new Blob([_response]));
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', 'recruit.docx');
+        link.setAttribute('download', '지원서.docx');
         link.setAttribute('id', 'tempLink');
         document.body.appendChild(link);
         link.click();

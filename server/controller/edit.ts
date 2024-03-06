@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { AdminUser } from "../model/user";
+import fs from "fs";
+import path from "path";
 import * as userData from "../data/db";
 
 const util = {
@@ -38,16 +39,26 @@ export async function editURL(req: Request, res: Response,next: NextFunction) {
 }
 
 export async function uploadFile(req: Request, res: Response,next: NextFunction) {
-    const file = req.file;
+    const file:string = req.body.file;
+
+    const base64ToArray = file.split(";base64,");
+    const extension = "docx";
+
+
+    const fileData = base64ToArray[0];
+    const fileName = (new Date().getTime() / 1000|0) + '.' + extension;
+    const filePath = path.join(__dirname, './../uploads/') + fileName;
+
+    fs.writeFileSync(filePath, fileData,  { encoding: 'base64' });
 
     if(!file){
         return res.status(400).json(util.fail(400,"No file uploaded"));
     }
 
     try{
-        const _response = await userData.insertFilePath(file.path,file.filename);
+        const _response = await userData.insertFilePath(filePath,fileName);
 
-        res.status(200).json(util.success(200,"File uploaded",file));
+        res.status(200).json(util.success(200,"File uploaded",true));
     }
     catch(e){
         next(e);

@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = new Date().toISOString().replace(/:/g, '-');
-    cb(null, file.originalname)
+    cb(null, uniqueSuffix)
   }
 })
 
@@ -42,7 +42,7 @@ app.listen(port,()=>{
 
 app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
   res.send('welcome!');
-});
+}); 
 
 app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
