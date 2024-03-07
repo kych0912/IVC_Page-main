@@ -3,24 +3,26 @@ import Divider from '@mui/material/Divider';
 import { useEffect, useState } from "react"
 import Auth from "../../../hoc/auth"
 import Upload from "./fileUpload";
+import {editFile} from "../../../api/login"
 
 function Admin(){
     const [loading,setLoading] = useState(false)
     const [file,setFile] = useState('');
 
     const handleSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
-        // setLoading(true);
-        // const response = await editURL(url);
+        setLoading(true);
+        console.log(file);
+        const response = await editFile(file);
 
-        // if(response.success){
-        //     alert('수정 성공');
-        // }
-        // else{
-        //     alert('수정 실패');
-        // }
-        // setLoading(false);
+        if(response.success){
+            alert('수정 성공');
+        }
+        else{
+            alert('수정 실패');
+        }
+        setLoading(false);
     }
 
     useEffect(()=>{

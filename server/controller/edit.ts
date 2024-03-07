@@ -41,9 +41,12 @@ export async function editURL(req: Request, res: Response,next: NextFunction) {
 export async function uploadFile(req: Request, res: Response,next: NextFunction) {
     const file:string = req.body.file;
 
+    if(!file){
+        return res.status(400).json(util.fail(400,"No file uploaded"));
+    }
+
     const base64ToArray = file.split(";base64,");
     const extension = "docx";
-
 
     const fileData = base64ToArray[0];
     const fileName = (new Date().getTime() / 1000|0) + '.' + extension;

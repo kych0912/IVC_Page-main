@@ -20,9 +20,22 @@ export async function editURL(url){
             url:url
         }
 
-        
-
         const _response = await axios.post(`/api/admin/editURL`,body);
+        return _response.data;
+    }
+    catch(e){
+        return e.response;
+    }
+}
+
+export async function editFile(base64){
+    try{
+        const body={
+            file:base64[0]
+        }
+        console.log(body);
+        
+        const _response = await axios.post(`/api/admin/uploadFile`,body);
         return _response.data;
     }
     catch(e){
