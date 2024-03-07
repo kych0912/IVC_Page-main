@@ -13,7 +13,6 @@ function Admin(){
         e.preventDefault();
 
         setLoading(true);
-        console.log(file);
         const response = await editFile(file);
 
         if(response.success){
@@ -24,10 +23,6 @@ function Admin(){
         }
         setLoading(false);
     }
-
-    useEffect(()=>{
-        console.log(file);
-    },[file])
 
     return(
         <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}> 
@@ -42,7 +37,7 @@ function Admin(){
                 </Typography>
             
                 <Upload file={file} setFile={setFile}/>   
-                <Button disabled={!file} onClick = {handleSubmit} type = "submit" variant="contained" color="primary" sx={{width:'100%',height:'35px',borderRadius:'10px',boxShadow:0,my:2}}>
+                <Button disabled={!file.length} onClick = {handleSubmit} type = "submit" variant="contained" color="primary" sx={{width:'100%',height:'35px',borderRadius:'10px',boxShadow:0,my:2}}>
                     <Typography sx={{fontFamily:'Pretendard Variable',fontSize:'16px',fontWeight:"bold"}}>
                         지원서 파일 수정
                     </Typography>

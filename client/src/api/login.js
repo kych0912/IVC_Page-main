@@ -33,7 +33,6 @@ export async function editFile(base64){
         const body={
             file:base64[0]
         }
-        console.log(body);
         
         const _response = await axios.post(`/api/admin/uploadFile`,body);
         return _response.data;
