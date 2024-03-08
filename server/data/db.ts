@@ -151,3 +151,32 @@ export async function deleteSession(token: string): Promise<any> {
         throw err;
     }
 }
+
+export async function deleteURL(id: number): Promise<any> {
+    const query = `DELETE FROM submit_table WHERE id=${id}`;
+
+    try {
+        const conn = await pool.getConnection();
+        const [result] = await conn.query(query);
+        conn.release();
+        return result;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
+export async function getURLs (): Promise<any> {
+    const query = `SELECT * FROM submit_table`;
+
+    try {
+        const conn = await pool.getConnection();
+        const [result] = await conn.query(query);
+        conn.release();
+        return result;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
