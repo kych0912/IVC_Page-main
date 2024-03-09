@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loading from './loading';
 
-export default function withAuth(SpecificComponent, redirectTo = "/admin") {
+export default function withAuth(SpecificComponent, redirectTo = "/admin/login") {
     function AuthCheck() {
         const navigate = useNavigate();
         const { data, isLoading, isError } = useQuery('auth', auth,{
