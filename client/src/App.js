@@ -5,6 +5,8 @@ import Faq from '../src/component/FAQ'
 import Recruit from '../src/component/Recruit'
 import Login from "./component/admin/login"
 import Paperbase from './component/admin/PaperBase';
+import Edit from './component/admin/adminComponent/Edit';
+import Table from './component/admin/adminComponent/EditTable';
 import { Outlet } from 'react-router-dom';
 
 import {
@@ -47,11 +49,12 @@ function App() {
             <Route path="/FAQ" element={<Faq/>}/>
             <Route path="/recruit" element={<Recruit/>}/>
           </Route>
+          
+          <Route path="/admin/login" element={<Login/>}/>
 
-          <Route path="/admin" element={<WithoutNav/>}>
-            <Route index element={<Login/>}/>
-            <Route path="edit" element={<Paperbase/>}>
-            </Route>
+          <Route path="/admin" element={<Paperbase/>}>
+            <Route path="edit" element={<Edit/>}/>
+            <Route path="table" element={<Table/>}/>
           </Route>
 
         </Routes>

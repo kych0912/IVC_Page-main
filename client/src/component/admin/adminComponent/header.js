@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
-  const { onDrawerToggle,handleTabsValue,tabsValue } = props;
+  const { onDrawerToggle } = props;
 
   return (
     <React.Fragment>
@@ -46,12 +46,6 @@ function Header(props) {
             
           </Grid>
         </Toolbar>
-      </AppBar>
-      <AppBar color="primary" component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
-        <Tabs value={tabsValue} onChange={handleTabsValue} textColor="inherit">
-          <Tab label="제출 링크 수정" />
-          <Tab label="지원서 수정" />
-        </Tabs>
       </AppBar>
     </React.Fragment>
   );

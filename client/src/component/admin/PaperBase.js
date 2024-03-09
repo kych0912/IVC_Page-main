@@ -5,9 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Auth from "../../hoc/auth"
 import Navigator from './adminComponent/Navigator';
+import {Outlet} from 'react-router-dom';
 import Header from './adminComponent/header';
-import Url from "./adminComponent/editURL"
-import File from "./adminComponent/editFile"
 
 let theme = createTheme({
   palette: {
@@ -173,9 +172,6 @@ function Paperbase(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleTabsValue = (event, newValue) => {  
-    setTabsValue(newValue);
-  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -200,13 +196,8 @@ function Paperbase(props) {
           />
         </Box>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <Header onDrawerToggle={handleDrawerToggle} handleTabsValue={handleTabsValue} tabsValue={tabsValue}/>
-            <TabPanel value={tabsValue} index={0}>
-              <Url/>
-            </TabPanel>
-            <TabPanel value={tabsValue} index={1}>
-              <File/>
-            </TabPanel>
+          <Header onDrawerToggle={handleDrawerToggle}/>
+          <Outlet />
         </Box>
       </Box>
     </ThemeProvider>

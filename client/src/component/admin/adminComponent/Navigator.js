@@ -11,26 +11,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import DnsRoundedIcon from '@mui/icons-material/DnsRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {logOut} from '../../../api/login';
+import { useNavigate } from 'react-router-dom';
 
-const categories = [
-  {
-    id: 'Edit',
-    children: [
-      {
-        id: '수정',
-        icon: <PeopleIcon />,
-        active: false,
-      },
-      { id: '올린 파일', icon: <DnsRoundedIcon />,active:false },
-    ],
-  },
-  {
-    id: 'User',
-    children: [
-      { id: 'LOGOUT', icon: <LogoutIcon /> },
-    ],
-  },
-];
 
 const item = {
   py: '2px',
@@ -47,9 +29,9 @@ const itemCategory = {
   px: 3,
 };
 
-const handleLogout = async () => {
+async function handleLogout(){
     const _response = await logOut();
-    
+
     
     if(_response.success){
         window.location.href = '/';
@@ -59,13 +41,46 @@ const handleLogout = async () => {
     }
 }
 
-const handleFunction = () =>{
-    console.log('function');
-}
-
-
 export default function Navigator(props) {
+  const navigate = useNavigate();
   const { ...other } = props;
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const pathname = window.location.pathname.split('/')[2]; 
+
+  function navigateToTable(){
+    navigate('/admin/table');
+  }
+  
+  function navigateToEdit(){
+    navigate('/admin/edit');
+  }
+
+  const categories = [
+    {
+      id: 'EDIT',
+      children: [
+        {
+          path:'edit',
+          id: '수정',
+          icon: <PeopleIcon />,
+          Fn:navigateToEdit,
+        },
+        { 
+          path:'table',
+          id: '올린 파일', 
+          icon: <DnsRoundedIcon />,
+          Fn:navigateToTable,
+        },
+      ],
+    },
+    {
+      id: 'User',
+      children: [
+        { id: 'LOGOUT', icon: <LogoutIcon />,Fn:handleLogout,active:false },
+      ],
+    },
+  ];
+  
 
   return (
     <Drawer variant="permanent" {...other}>
@@ -78,9 +93,9 @@ export default function Navigator(props) {
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active}) => (
+            {children.map(({ path, id: childId, icon, active,Fn},index) => (
               <ListItem disablePadding key={childId}>
-                <ListItemButton onClick={handleLogout} selected={active} sx={item}>
+                <ListItemButton onClick={Fn} selected={path===pathname} sx={item}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText>{childId}</ListItemText>
                 </ListItemButton>
