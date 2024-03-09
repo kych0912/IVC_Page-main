@@ -45,7 +45,7 @@ export async function editFile(base64){
 export async function logOut(){
     try{
         const _response = await axios.get(`/api/admin/logout`);
-        return _response;
+        return _response.data;
     }
     catch(e){
         return e;

@@ -49,12 +49,18 @@ const itemCategory = {
 
 const handleLogout = async () => {
     const _response = await logOut();
+    
+    
     if(_response.success){
         window.location.href = '/';
     }
     else{
         alert('로그아웃에 실패했습니다.');
     }
+}
+
+const handleFunction = () =>{
+    console.log('function');
 }
 
 
@@ -72,9 +78,9 @@ export default function Navigator(props) {
             <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
+            {children.map(({ id: childId, icon, active}) => (
               <ListItem disablePadding key={childId}>
-                <ListItemButton selected={active} sx={item}>
+                <ListItemButton onClick={handleLogout} selected={active} sx={item}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText>{childId}</ListItemText>
                 </ListItemButton>
