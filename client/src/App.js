@@ -6,7 +6,7 @@ import Recruit from '../src/component/Recruit'
 import Login from "./component/admin/login"
 import Paperbase from './component/admin/PaperBase';
 import Edit from './component/admin/adminComponent/Edit';
-import Table from './component/admin/adminComponent/EditTable';
+import Table from './component/admin/adminComponent/editTable';
 import { Outlet } from 'react-router-dom';
 
 import {

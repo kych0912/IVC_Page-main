@@ -200,6 +200,7 @@ function Paperbase(props) {
           <Outlet />
         </Box>
       </Box>
+
     </ThemeProvider>
   );
 }
