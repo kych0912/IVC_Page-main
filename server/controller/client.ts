@@ -4,7 +4,7 @@ import * as userData from "../data/db";
 
 export async function getURL(req: Request, res: Response,next: NextFunction) {
     try{
-        const _response = await userData.getURLLastest();
+        const _response = await userData.getURLSelected();
 
         res.status(200).json({message: _response,success: true});
     }

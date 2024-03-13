@@ -72,6 +72,16 @@ function createData(name, calories, fat, carbs, protein) {
   }));
 
 export default function FileTable(){
+    const [selected,setSelected] = React.useState(0);
+
+    const handleSelected = (index) => {
+        setSelected(index);
+    }
+
+    React.useEffect(()=>{
+        setSelected(0);
+    },[])
+    
     return(
         <TableContainer component={Paper} sx={{mt:1,overflowX:'hidden'}}>
             <Table sx={{  display: 'table', tableLayout: 'fixed' }} aria-label="simple table">
@@ -90,7 +100,7 @@ export default function FileTable(){
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {rows.map((row) => (
+                {rows.map((row,index) => (
                     <TableRow
                     key={row.name}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -100,7 +110,12 @@ export default function FileTable(){
                             {row.name}
                         </Typography>
                     </TableCell>
-                    <TableCell align="right"><IOSSwitch/></TableCell>
+                    <TableCell align="right">
+                        <IOSSwitch
+                            checked={index===selected}
+                            onChange={()=>handleSelected(index)}
+                        />
+                    </TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
