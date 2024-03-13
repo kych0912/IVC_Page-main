@@ -67,7 +67,7 @@ export default function Navigator(props) {
         },
         { 
           path:'table',
-          id: '올린 파일', 
+          id: 'DB', 
           icon: <DnsRoundedIcon />,
           Fn:navigateToTable,
         },

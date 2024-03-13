@@ -71,7 +71,7 @@ function createData(name, calories, fat, carbs, protein) {
     },
   }));
 
-export default function URLtable(){
+export default function FileTable(){
     return(
         <TableContainer component={Paper} sx={{mt:1,overflowX:'hidden'}}>
             <Table sx={{  display: 'table', tableLayout: 'fixed' }} aria-label="simple table">

@@ -7,6 +7,7 @@ import Auth from "../../hoc/auth"
 import Navigator from './adminComponent/Navigator';
 import {Outlet} from 'react-router-dom';
 import Header from './adminComponent/header';
+import UrlTable from './adminComponent/URLtable';
 
 let theme = createTheme({
   palette: {
@@ -199,6 +200,7 @@ function Paperbase(props) {
           <Header onDrawerToggle={handleDrawerToggle}/>
           <Outlet />
         </Box>
+        
       </Box>
 
     </ThemeProvider>
