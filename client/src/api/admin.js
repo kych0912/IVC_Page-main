@@ -40,7 +40,7 @@ export async function getURLs(){
 
 export async function selectURL(id){
     try{
-        const _response = await axios.get(`/api/admin/selectURL/${id}`);
+        const _response = await axios.post(`/api/admin/selectURL/${id}`);
         return _response.data;
     }
     catch(e){

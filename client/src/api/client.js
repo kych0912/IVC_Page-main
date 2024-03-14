@@ -26,6 +26,6 @@ export async function auth(){
         return _response;
     }
     catch(e){
-        return e;
+        return e.response;
     }
 }

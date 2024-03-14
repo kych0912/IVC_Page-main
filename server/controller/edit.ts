@@ -39,7 +39,7 @@ export async function editURL(req: Request, res: Response,next: NextFunction) {
 }
 
 export async function selectURL(req: Request, res: Response,next: NextFunction) {
-    const id = req.body.id;
+    const id:number = Number(req.params.id);
     try{
         const _response = await userData.setURLSelected(id);
 

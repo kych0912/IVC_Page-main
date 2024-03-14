@@ -3,10 +3,12 @@ import React from "react"
 import UrlTable from "./URLtable"
 import FileTable from "./Filetable"
 import {getURLs} from "../../../api/admin";
+import { useQuery } from "react-query";
 
 export default function EditTable() {
     const [loading,setLoading] = React.useState(true);
     const [urls,setUrls] = React.useState([{}]);
+    const query = useQuery('url',getURLs);
 
     const fetchURL = async () => {
         const response = await getURLs();
@@ -34,7 +36,8 @@ export default function EditTable() {
                     
                     <Divider />
 
-                    <UrlTable urlList={urls}/>
+                    {!query.isLoading&&<UrlTable list={query.data.message}/>}
+
                 </Box>
             </Paper>
         </Box>
@@ -48,13 +51,13 @@ export default function EditTable() {
                     </Typography>
                     <Divider />
 
-                    <FileTable/>
+                    {!query.isLoading&&<FileTable list={query.data.message}/>}
                 </Box>
             </Paper>
         </Box>
 
         {
-            loading?
+            loading||query.isLoading?
             <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%"}}>
                 <CircularProgress color="primary"/>
             </Box>

@@ -81,10 +81,12 @@ export async function getURLs (): Promise<any> {
 }
 
 export async function setURLSelected (id:number):Promise<any>{
+    const changeselect = `UPDATE submit_table SET selected=false WHERE selected=true`
     const query = `UPDATE submit_table SET selected=true WHERE seq=${id}`;
 
     try {
         const conn = await pool.getConnection();
+        await conn.query(changeselect);
         const [result] = await conn.query(query);
         conn.release();
         return result;
