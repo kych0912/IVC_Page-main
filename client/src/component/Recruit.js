@@ -11,12 +11,17 @@ export default function Main(){
         setLoading(true);
         const _response = await getURL();
 
-        if(_response.success){
+        if(_response.message.length === 0 ){
+            setUrl('');
+            setLoading(false);
+        }
+        else if(_response.success){
             setUrl(prev=>prev=_response.message[0].url);
         }
         else{
             alert('URL을 불러오는데 실패했습니다.');
         }
+
         setLoading(false);
     }
 
@@ -33,6 +38,15 @@ export default function Main(){
         link.click();
         document.body.removeChild(link);
         setDownloadLoading(false);
+    }
+
+    const handlegoToURL = () => {
+        if(url.length === 0){
+            alert('모집 기간이 아닙니다.');
+        }
+        else{
+            window.open("https://"+url);
+        }
     }
 
     useEffect(()=>{
@@ -112,7 +126,7 @@ export default function Main(){
                         </Box>
                         :
                         <Box>
-                            <Link underline="none" color="inherit" onClick={()=>window.open("https://"+url)}>
+                            <Link underline="none" color="inherit" onClick={()=>handlegoToURL()}>
                                 <Button sx={{border:1,color:'white',padding:2}}>
                                     <Typography color="white" sx={{fontSize:{xs:20,md:30},fontFamily:'SUIT Variable',fontWeight:"bold",width:{xs:'130px',md:'200px'}}}>
                                         지원서 제출

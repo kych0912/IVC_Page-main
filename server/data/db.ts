@@ -81,10 +81,12 @@ export async function findSessionByToken(token:string):Promise<any> {
 export async function insertURL (url:string):Promise<any> {
 
     const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const changeSelected = `UPDATE submit_table SET selected=false WHERE selected=true`;
     const query = `INSERT INTO submit_table(url,edit_time,selected) VALUES("${url}", "${date}",true)`;
 
     try{
         const conn = await pool.getConnection();
+        await conn.query(changeSelected);
         const [rows] = await conn.query(query);
         conn.release();
         return rows;
