@@ -2,28 +2,14 @@ import { Paper, Box, Typography, Divider, CircularProgress } from "@mui/material
 import React from "react"
 import UrlTable from "./URLtable"
 import FileTable from "./Filetable"
-import {getURLs} from "../../../api/admin";
+import {getURLs,getFiles} from "../../../api/admin";
 import { useQuery } from "react-query";
 
 export default function EditTable() {
     const [loading,setLoading] = React.useState(true);
     const [urls,setUrls] = React.useState([{}]);
     const query = useQuery('url',getURLs);
-
-    const fetchURL = async () => {
-        const response = await getURLs();
-        if(response.success){
-            setUrls(response.message);
-            setLoading(false);
-        }
-        else{
-            alert('서버 오류');
-        }
-    }
-
-    React.useEffect(() => {
-        fetchURL();
-    },[])
+    const filequery = useQuery('file',getFiles);
 
     return (
         <>
@@ -51,13 +37,13 @@ export default function EditTable() {
                     </Typography>
                     <Divider />
 
-                    {!query.isLoading&&<FileTable list={query.data.message}/>}
+                    {!filequery.isLoading&&<FileTable list={filequery.data.message}/>}
                 </Box>
             </Paper>
         </Box>
 
         {
-            loading||query.isLoading?
+            filequery.isLoading||query.isLoading?
             <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%"}}>
                 <CircularProgress color="primary"/>
             </Box>

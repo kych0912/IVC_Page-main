@@ -61,6 +61,29 @@ export async function getURLs(req: Request, res: Response,next: NextFunction) {
     }
 }
 
+export async function selectFile(req: Request, res: Response,next: NextFunction) {
+    const id:number = Number(req.params.id);
+    try{
+        const _response = await userData.setFileSelected(id);
+
+        res.status(200).json({message: "File selected",success: true});
+    }
+    catch(e){
+        next(e);
+    }
+}
+
+export async function getFiles(req: Request, res: Response,next: NextFunction) {
+    try{
+        const _response = await userData.getFiles();
+
+        res.status(200).json({message: _response,success: true});
+    }
+    catch(e){
+        next(e);
+    }
+}
+
 
 export async function uploadFile(req: Request, res: Response,next: NextFunction) {
     const file:string = req.body.file;

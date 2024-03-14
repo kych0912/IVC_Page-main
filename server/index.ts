@@ -49,10 +49,12 @@ app.post('/api/admin/register', loginController.register);
 app.post('/api/admin/editURL', editController.editURL);
 app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile);
 app.post('/api/admin/selectURL/:id', editController.selectURL);
+app.post('/api/admin/selectFile/:id', editController.selectFile);
 
 app.get('/api/admin/getURL', clientController.getURL);
 app.get('/api/admin/getURLs', editController.getURLs);
 app.get('/api/admin/getFile', clientController.getFile);
+app.get('/api/admin/getFiles', editController.getFiles);
 app.get('/api/admin/auth', clientController.Auth);
 app.get('/api/admin/logout', loginController.logOut);
 

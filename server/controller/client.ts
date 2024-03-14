@@ -16,7 +16,7 @@ export async function getURL(req: Request, res: Response,next: NextFunction) {
 
 export async function getFile(req: Request, res: Response,next: NextFunction) {
     try{
-        const _response = await ClientDB.getFileLastest();
+        const _response = await ClientDB.getFileSelected();
 
         const filename = _response[0].filename;
         const file = __dirname + "/../uploads/" + filename;

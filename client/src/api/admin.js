@@ -47,3 +47,23 @@ export async function selectURL(id){
         return e.response;
     }
 }
+
+export async function getFiles(){
+    try{
+        const _response = await axios.get(`/api/admin/getFiles`);
+        return _response.data;
+    }
+    catch(e){
+        return e.response;
+    }
+}
+
+export async function selectFile(id){
+    try{
+        const _response = await axios.post(`/api/admin/selectFile/${id}`);
+        return _response.data;
+    }
+    catch(e){
+        return e.response;
+    }
+}

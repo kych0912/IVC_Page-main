@@ -18,8 +18,8 @@ export async function getURLSelected(): Promise<any> {
     }
 }
 
-export async function getFileLastest(): Promise<any> {
-    const query = `SELECT * FROM file_table ORDER BY time DESC LIMIT 1`;
+export async function getFileSelected(): Promise<any> {
+    const query = `SELECT * FROM file_table WHERE selected=true`;
 
     try {
         const conn = await pool.getConnection();
@@ -30,4 +30,5 @@ export async function getFileLastest(): Promise<any> {
         console.error(err);
         throw err;
     }
-};
+}
+

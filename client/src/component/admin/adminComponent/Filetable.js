@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
-import {selectURL} from "../../../api/admin";
+import {selectFile} from "../../../api/admin";
 const {useMutation,useQueryClient,useQuery} = require('react-query');
 
 const IOSSwitch = styled((props) => (
@@ -65,23 +65,32 @@ export default function URLtable(props){
   const {list} = props;
 
   const queryClient = useQueryClient()
-  const { mutate, isLoading, isError, error } = useMutation(selectURL,{
+  const { mutate, isLoading, isError, error } = useMutation(selectFile,{
     onSuccess: () => {
       // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ['url'] })
+      queryClient.invalidateQueries({ queryKey: ['file'] })
     },
   });
 
+  function getFullYmdStr(d){
+    //년월일시분초 문자열 생성
+    return d.getFullYear() + "년 " + (d.getMonth()+1) + "월 " + d.getDate() + "일 " + d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초 " +  '일월화수목금토'.charAt(d.getUTCDay())+'요일';
+  }
 
   return(
     <>
-      <TableContainer component={Paper} sx={{mt:1,overflowX:'hidden',maxHeight:"400px"}}>
-          <Table sx={{  maxHeight:500,display: 'table', tableLayout: 'fixed' }} aria-label="simple table" stickyHeader>
+      <TableContainer component={Paper} sx={{mt:1,overflowX:'auto',width:"100%",maxHeight:"400px"}}>
+          <Table sx={{  display: 'table', tableLayout: 'fixed' }} aria-label="simple table" stickyHeader>
               <TableHead>
               <TableRow>
                   <TableCell>
                       <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
                           파일명
+                      </Typography>
+                  </TableCell>
+                  <TableCell>
+                      <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                          등록 시간
                       </Typography>
                   </TableCell>
                   <TableCell align="right">
@@ -99,7 +108,12 @@ export default function URLtable(props){
                   >
                   <TableCell component="th" scope="row">
                       <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem', whiteSpace:'nowrap',overflow:'hidden', textOverflow:'ellipsis'}} color="text.secondary" >
-                          {row.url}
+                          {row.filename}
+                      </Typography>
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                      <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                      {getFullYmdStr(row.time)}
                       </Typography>
                   </TableCell>
                   <TableCell align="right">

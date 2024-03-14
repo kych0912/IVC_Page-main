@@ -97,3 +97,33 @@ export async function setURLSelected (id:number):Promise<any>{
     }
 }
 
+export async function getFiles():Promise<any>{
+    const query = `SELECT * FROM file_table ORDER BY time DESC`;
+
+    try {
+        const conn = await pool.getConnection();
+        const [result] = await conn.query(query);
+        conn.release();
+        return result;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
+export async function setFileSelected(id: number): Promise<any> {
+    const changeselect = `UPDATE file_table SET selected=false WHERE selected=true`
+    const query = `UPDATE file_table SET selected=true WHERE seq=${id}`;
+
+    try {
+        const conn = await pool.getConnection();
+        await conn.query(changeselect);
+        const [result] = await conn.query(query);
+        conn.release();
+        return result;
+    }
+    catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
