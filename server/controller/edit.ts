@@ -38,6 +38,30 @@ export async function editURL(req: Request, res: Response,next: NextFunction) {
     }
 }
 
+export async function selectURL(req: Request, res: Response,next: NextFunction) {
+    const id = req.body.id;
+    try{
+        const _response = await userData.setURLSelected(id);
+
+        res.status(200).json({message: "URL selected",success: true});
+    }
+    catch(e){
+        next(e);
+    }
+}
+
+export async function getURLs(req: Request, res: Response,next: NextFunction) {
+    try{
+        const _response = await userData.getURLs();
+
+        res.status(200).json({message: _response,success: true});
+    }
+    catch(e){
+        next(e);
+    }
+}
+
+
 export async function uploadFile(req: Request, res: Response,next: NextFunction) {
     const file:string = req.body.file;
 

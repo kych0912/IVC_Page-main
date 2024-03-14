@@ -1,11 +1,8 @@
 import { Box, Typography,InputBase, CircularProgress, Button,Toolbar,Grid,TextField, Paper, Tooltip,IconButton } from "@mui/material"
 import Divider from '@mui/material/Divider';    
 import { useState } from "react"
-import { editURL } from "../../../api/login"
+import { editURL } from "../../../api/admin"
 import Auth from "../../../hoc/auth"
-import Header from "./header"
-import Navigator from "./Navigator"
-import Paperbase from "../PaperBase"
 
 function Admin(){
     const [url,setUrl] = useState('')

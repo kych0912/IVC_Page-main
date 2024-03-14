@@ -3,7 +3,7 @@ import Divider from '@mui/material/Divider';
 import { useEffect, useState } from "react"
 import Auth from "../../../hoc/auth"
 import Upload from "./fileUpload";
-import {editFile} from "../../../api/login"
+import {editFile} from "../../../api/admin"
 
 function Admin(){
     const [loading,setLoading] = useState(false)

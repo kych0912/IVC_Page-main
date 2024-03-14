@@ -1,8 +1,28 @@
-import { Paper, Box, Typography, Divider } from "@mui/material"
+import { Paper, Box, Typography, Divider, CircularProgress } from "@mui/material"
+import React from "react"
 import UrlTable from "./URLtable"
 import FileTable from "./Filetable"
+import {getURLs} from "../../../api/admin";
 
 export default function EditTable() {
+    const [loading,setLoading] = React.useState(true);
+    const [urls,setUrls] = React.useState([{}]);
+
+    const fetchURL = async () => {
+        const response = await getURLs();
+        if(response.success){
+            setUrls(response.message);
+            setLoading(false);
+        }
+        else{
+            alert('서버 오류');
+        }
+    }
+
+    React.useEffect(() => {
+        fetchURL();
+    },[])
+
     return (
         <>
         <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
@@ -14,7 +34,7 @@ export default function EditTable() {
                     
                     <Divider />
 
-                    <UrlTable/>
+                    <UrlTable urlList={urls}/>
                 </Box>
             </Paper>
         </Box>
@@ -32,6 +52,15 @@ export default function EditTable() {
                 </Box>
             </Paper>
         </Box>
+
+        {
+            loading?
+            <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%"}}>
+                <CircularProgress color="primary"/>
+            </Box>
+            :
+            ""
+        }
         </>
     )
 }

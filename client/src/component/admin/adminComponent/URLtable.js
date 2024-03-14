@@ -71,7 +71,11 @@ function createData(name, calories, fat, carbs, protein) {
     },
   }));
 
-export default function URLtable(){
+
+export default function URLtable(props){
+    const {urlList} = props;
+    console.log(urlList);
+
     const [selected,setSelected] = React.useState(0);
 
     const handleSelected = (index) => {
@@ -80,6 +84,7 @@ export default function URLtable(){
 
     React.useEffect(()=>{
         setSelected(0);
+        console.log(urlList)
     },[])
 
     return(

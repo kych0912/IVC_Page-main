@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { AdminUser } from "../model/user";
 import * as userData from "../data/db";
+import * as ClientDB from "../data/ClientDB";
 
 export async function getURL(req: Request, res: Response,next: NextFunction) {
     try{
-        const _response = await userData.getURLSelected();
+        const _response = await ClientDB.getURLSelected();
 
         res.status(200).json({message: _response,success: true});
     }
@@ -15,7 +16,7 @@ export async function getURL(req: Request, res: Response,next: NextFunction) {
 
 export async function getFile(req: Request, res: Response,next: NextFunction) {
     try{
-        const _response = await userData.getFileLastest();
+        const _response = await ClientDB.getFileLastest();
 
         const filename = _response[0].filename;
         const file = __dirname + "/../uploads/" + filename;

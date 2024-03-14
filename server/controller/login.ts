@@ -1,19 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 import { AdminUser } from "../model/user";
-import * as userData from "../data/db";
+import * as UserData from "../data/UserDB";
 
 export async function login(req: Request, res: Response, next: NextFunction) {
 
     const loginData:AdminUser = req.body;
 
     try{
-        const user = await userData.findUserByName(loginData);
+        const user = await UserData.findUserByName(loginData);
 
         if (user) {
             const name = user.name;
             const password = user.password;
 
-            const isMatch = await userData.comparePassword(loginData.password, password);
+            const isMatch = await UserData.comparePassword(loginData.password, password);
 
             if (!isMatch) {
                 return res.json({
@@ -26,7 +26,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
                 password: password
             }
 
-            const token = await userData.generateToken(tokenUser);
+            const token = await UserData.generateToken(tokenUser);
 
             res.cookie("x_auth", token).status(200).json({ loginSuccess: true, userId: user.name});
 
@@ -47,12 +47,12 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 export async function register(req: Request, res: Response,next: NextFunction) {
     const user:AdminUser = req.body;
     try{
-        const _response = await userData.createUser(user);
+        const _response = await UserData.createUser(user);
 
         if (!_response.affectedRows) {
             res.send("User already exists");
         } else {
-            // userData.createUser(name, password);
+            // UserData.createUser(name, password);
             res.send("User created");
         }
     }
@@ -64,7 +64,7 @@ export async function register(req: Request, res: Response,next: NextFunction) {
 export async function logOut(req: Request, res: Response,next: NextFunction) {
     try{
         const token = req.cookies.x_auth;
-        const _response = await userData.deleteSession(token);
+        const _response = await UserData.deleteSession(token);
 
         res.clearCookie("x_auth").status(200).json({message: "Logout success",success: true});
     }
