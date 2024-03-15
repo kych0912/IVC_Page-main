@@ -8,12 +8,13 @@ import {editFile} from "../../../api/admin"
 function Admin(){
     const [loading,setLoading] = useState(false)
     const [file,setFile] = useState('');
+    const [name,setName] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         setLoading(true);
-        const response = await editFile(file);
+        const response = await editFile(name,file);
 
         if(response.success){
             alert('수정 성공');
@@ -36,7 +37,7 @@ function Admin(){
                     파일 업로드
                 </Typography>
             
-                <Upload file={file} setFile={setFile}/>   
+                <Upload file={file} setFile={setFile} name={name} setName={setName}/>   
                 <Button disabled={!file.length} onClick = {handleSubmit} type = "submit" variant="contained" color="primary" sx={{width:'100%',height:'35px',borderRadius:'10px',boxShadow:0,my:2}}>
                     <Typography sx={{fontFamily:'Pretendard Variable',fontSize:'16px',fontWeight:"bold"}}>
                         지원서 파일 수정

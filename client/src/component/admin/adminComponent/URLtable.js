@@ -76,7 +76,7 @@ export default function URLtable(props){
   return(
     <>
       <TableContainer component={Paper} sx={{mt:1,overflowX:'hidden',maxHeight:"400px"}}>
-          <Table sx={{  maxHeight:500,display: 'table', tableLayout: 'fixed' }} aria-label="simple table" stickyHeader>
+          <Table sx={{  display: 'table', tableLayout: 'fixed'}} aria-label="simple table" stickyHeader>
               <TableHead>
               <TableRow>
                   <TableCell>
@@ -116,7 +116,7 @@ export default function URLtable(props){
 
       {
             isLoading?
-            <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%"}}>
+            <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%",zIndex:5}}>
                 <CircularProgress color="primary"/>
             </Box>
             :

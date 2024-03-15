@@ -87,6 +87,7 @@ export async function getFiles(req: Request, res: Response,next: NextFunction) {
 
 export async function uploadFile(req: Request, res: Response,next: NextFunction) {
     const file:string = req.body.file;
+    const name:string = req.body.name;
 
     if(!file){
         return res.status(400).json(util.fail(400,"No file uploaded"));
@@ -96,7 +97,7 @@ export async function uploadFile(req: Request, res: Response,next: NextFunction)
     const extension = "docx";
 
     const fileData = base64ToArray[0];
-    const fileName = (new Date().getTime() / 1000|0) + '.' + extension;
+    const fileName = name;
     const filePath = path.join(__dirname, './../uploads/') + fileName;
 
     fs.writeFileSync(filePath, fileData,  { encoding: 'base64' });

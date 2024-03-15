@@ -79,58 +79,63 @@ export default function URLtable(props){
 
   return(
     <>
-      <TableContainer component={Paper} sx={{mt:1,overflowX:'auto',width:"100%",maxHeight:"400px"}}>
-          <Table sx={{  display: 'table', tableLayout: 'fixed' }} aria-label="simple table" stickyHeader>
-              <TableHead>
-              <TableRow>
-                  <TableCell>
-                      <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
-                          파일명
-                      </Typography>
-                  </TableCell>
-                  <TableCell>
-                      <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
-                          등록 시간
-                      </Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                      <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
-                          공개/비공개
-                      </Typography>
-                  </TableCell>
+      <TableContainer component={Paper} sx={{mt:1,overflowX:'auto',maxHeight:"400px"}}>
+          <Table sx={{ display: 'table', tableLayout: 'fixed' }} aria-label="simple table" stickyHeader>
+          <TableHead>
+          <TableRow>
+              <TableCell>
+                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                      파일명
+                  </Typography>
+              </TableCell>
+              <TableCell>
+                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                      등록 시간
+                  </Typography>
+              </TableCell>
+              <TableCell align="right">
+                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                      공개/비공개
+                  </Typography>
+              </TableCell>
+          </TableRow>
+          </TableHead>
+          <TableBody>
+          {list.map((row,index) => (
+              <TableRow
+              key={row.seq}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+              <TableCell component="th" scope="row">
+                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem', whiteSpace:'nowrap',overflow:'hidden', textOverflow:'ellipsis'}} color="text.secondary" >
+                      {row.filename}
+                  </Typography>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                  {row.time}
+                  </Typography>
+              </TableCell>
+              <TableCell component="th" scope="row">
+                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                  {row.time}
+                  </Typography>
+              </TableCell>
+              <TableCell align="right">
+                  <IOSSwitch 
+                      checked={row.selected}
+                      onChange={()=>mutate(row.seq)
+                  }/>
+                </TableCell>
               </TableRow>
-              </TableHead>
-              <TableBody>
-              {list.map((row,index) => (
-                  <TableRow
-                  key={row.seq}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                  <TableCell component="th" scope="row">
-                      <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem', whiteSpace:'nowrap',overflow:'hidden', textOverflow:'ellipsis'}} color="text.secondary" >
-                          {row.filename}
-                      </Typography>
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                      <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
-                      {getFullYmdStr(row.time)}
-                      </Typography>
-                  </TableCell>
-                  <TableCell align="right">
-                      <IOSSwitch 
-                          checked={row.selected}
-                          onChange={()=>mutate(row.seq)
-                      }/>
-                    </TableCell>
-                  </TableRow>
-              ))}
-              </TableBody>
-          </Table>
-      </TableContainer>
+          ))}
+          </TableBody>
+      </Table>
+  </TableContainer>
 
       {
             isLoading?
-            <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%"}}>
+            <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%",zIndex:5}}>
                 <CircularProgress color="primary"/>
             </Box>
             :

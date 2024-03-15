@@ -19,8 +19,7 @@ const VisuallyHiddenInput = styled('input')({
   });
 
 export default function Navbar(props) {
-    const {file,setFile} = props;
-    const [name,setName] = React.useState('');
+    const {file,setFile,name,setName} = props;
 
     const onDropFiles = (e) => {
         e.preventDefault()

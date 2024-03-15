@@ -12,7 +12,7 @@ export async function getURL() {
 
 export async function downloadFile() {
     try{
-        const _response = await axios.get(`/api/admin/getFile`, {responseType : 'blob'});
+        const _response = await axios.get(`/api/admin/getFile`);
         return _response.data;
     }
     catch(e){

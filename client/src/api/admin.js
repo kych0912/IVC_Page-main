@@ -14,9 +14,10 @@ export async function editURL(url){
     }
 }
 
-export async function editFile(base64){
+export async function editFile(filename,base64){
     try{
         const body={
+            name:filename,
             file:base64[0]
         }
         

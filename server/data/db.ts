@@ -39,10 +39,12 @@ export async function insertURL (url:string):Promise<any> {
 
 export async function insertFilePath(path: string, filename: string): Promise<any> {
     const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const query = `INSERT INTO file_table(dir, time, filename) VALUES("${path}", "${date}", "${filename}")`;
+    const changeselect = `UPDATE file_table SET selected=false WHERE selected=true`
+    const query = `INSERT INTO file_table(dir, time, filename,selected) VALUES("${path}", "${date}", "${filename}",true)`;
 
     try {
         const conn = await pool.getConnection();
+        await conn.query(changeselect);
         const [result] = await conn.query(query);
         conn.release();
         return result;
@@ -67,7 +69,7 @@ export async function deleteURL(id: number): Promise<any> {
 }
 
 export async function getURLs (): Promise<any> {
-    const query = `SELECT * FROM submit_table`;
+    const query = `SELECT * FROM submit_table ORDER BY seq DESC`;
 
     try {
         const conn = await pool.getConnection();

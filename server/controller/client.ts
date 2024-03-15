@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { AdminUser } from "../model/user";
 import * as userData from "../data/db";
 import * as ClientDB from "../data/ClientDB";
+import fs from 'fs'
 
 export async function getURL(req: Request, res: Response,next: NextFunction) {
     try{
@@ -19,9 +20,23 @@ export async function getFile(req: Request, res: Response,next: NextFunction) {
         const _response = await ClientDB.getFileSelected();
 
         const filename = _response[0].filename;
-        const file = __dirname + "/../uploads/" + filename;
+        const filePath = __dirname + "/../uploads/" + filename;
 
-        res.download(file);
+        fs.access(filePath, fs.constants.F_OK, (err) => {
+            if (err) {
+                console.error("File doesn't exist.");
+                return res.status(404).send('File not found');
+            }
+
+            res.download(filePath, filename, (downloadError) => {
+                if (downloadError) {
+                    console.error("Error downloading the file.");
+                    next(downloadError);
+                } else {
+                    console.log("File successfully sent to client.");
+                }
+            });
+        });
     }
     catch(e){
         next(e);
