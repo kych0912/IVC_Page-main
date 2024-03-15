@@ -80,7 +80,7 @@ export default function URLtable(props){
   return(
     <>
       <TableContainer component={Paper} sx={{mt:1,overflowX:'auto',maxHeight:"400px"}}>
-          <Table sx={{ display: 'table', tableLayout: 'fixed' }} aria-label="simple table" stickyHeader>
+          <Table sx={{ display: 'table', tableLayout: {xs:'auto',sm:'fixed'} }} aria-label="simple table" stickyHeader>
           <TableHead>
           <TableRow>
               <TableCell>
