@@ -3,7 +3,7 @@ import multer from 'multer';
 import * as loginController from './controller/login';
 import * as editController from './controller/edit';
 import * as clientController from './controller/client';
-import db from './data/mysql';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 const app = express();
@@ -43,6 +43,12 @@ app.listen(port,()=>{
 app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
   res.send('welcome!');
 }); 
+
+app.use(cors({
+  origin: 'https://ivc-inha.co.kr',
+  credentials: true,
+  optionsSuccessStatus: 200,
+}));
 
 app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);

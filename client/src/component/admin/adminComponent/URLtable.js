@@ -75,8 +75,8 @@ export default function URLtable(props){
 
   return(
     <>
-      <TableContainer component={Paper} sx={{mt:1,overflowX:'hidden',maxHeight:"400px"}}>
-          <Table sx={{  display: 'table', tableLayout: 'fixed'}} aria-label="simple table" stickyHeader>
+      <TableContainer component={Paper} sx={{mt:1,overflowX:'auto',maxHeight:"400px"}}>
+          <Table sx={{ display: 'table', tableLayout: {xs:'auto',sm:'fixed'} }} aria-label="simple table" stickyHeader>
               <TableHead>
               <TableRow>
                   <TableCell>
@@ -89,6 +89,11 @@ export default function URLtable(props){
                           공개/비공개
                       </Typography>
                   </TableCell>
+                  <TableCell align="right">
+                    <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                        삭제
+                    </Typography>
+                </TableCell>
               </TableRow>
               </TableHead>
               <TableBody>
@@ -98,6 +103,11 @@ export default function URLtable(props){
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                   <TableCell component="th" scope="row">
+                      <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem', whiteSpace:'nowrap',overflow:'hidden', textOverflow:'ellipsis'}} color="text.secondary" >
+                          {row.url}
+                      </Typography>
+                  </TableCell>
+                  <TableCell component="th" scope="row" align="right">
                       <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem', whiteSpace:'nowrap',overflow:'hidden', textOverflow:'ellipsis'}} color="text.secondary" >
                           {row.url}
                       </Typography>

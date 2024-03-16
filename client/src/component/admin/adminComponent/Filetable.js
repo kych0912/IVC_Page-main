@@ -1,4 +1,5 @@
-import { Paper, Box, Typography, Switch, CircularProgress } from "@mui/material"
+import { Paper, Box, Typography, Switch, CircularProgress, IconButton } from "@mui/material"
+import DeleteIcon from '@mui/icons-material/Delete';
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -98,6 +99,11 @@ export default function URLtable(props){
                       공개/비공개
                   </Typography>
               </TableCell>
+              <TableCell align="right">
+                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+                      삭제
+                  </Typography>
+              </TableCell>
           </TableRow>
           </TableHead>
           <TableBody>
@@ -116,16 +122,16 @@ export default function URLtable(props){
                   {row.time}
                   </Typography>
               </TableCell>
-              <TableCell component="th" scope="row">
-                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
-                  {row.time}
-                  </Typography>
-              </TableCell>
               <TableCell align="right">
                   <IOSSwitch 
                       checked={row.selected}
                       onChange={()=>mutate(row.seq)
                   }/>
+                </TableCell>
+                <TableCell scope="row" align="right">
+                  <IconButton aria-label="delete">
+                    <DeleteIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
           ))}
