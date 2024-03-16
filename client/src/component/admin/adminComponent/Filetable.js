@@ -84,23 +84,23 @@ export default function URLtable(props){
           <Table sx={{ display: 'table', tableLayout: {xs:'auto',sm:'fixed'} }} aria-label="simple table" stickyHeader>
           <TableHead>
           <TableRow>
-              <TableCell>
+              <TableCell width="40%">
                   <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
                       파일명
                   </Typography>
               </TableCell>
-              <TableCell>
+              <TableCell width="40%">
                   <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
                       등록 시간
                   </Typography>
               </TableCell>
-              <TableCell align="right">
+              <TableCell width="10%" align="center">
                   <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
                       공개/비공개
                   </Typography>
               </TableCell>
-              <TableCell align="right">
-                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem'}} color="text.secondary" >
+              <TableCell width="10%" align="right">
+                  <Typography variant="body1" sx={{fontFamily:'SUIT Variable',fontWeight:800,fontSize:'0.75rem',mr:1.5}} color="text.secondary" >
                       삭제
                   </Typography>
               </TableCell>
@@ -122,7 +122,7 @@ export default function URLtable(props){
                   {row.time}
                   </Typography>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="center">
                   <IOSSwitch 
                       checked={row.selected}
                       onChange={()=>mutate(row.seq)
