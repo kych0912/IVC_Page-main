@@ -129,3 +129,18 @@ export async function setFileSelected(id: number): Promise<any> {
         throw err;
     }
 }
+
+export async function deleteFile(id: number): Promise<any> {
+    const query = `DELETE FROM file_table WHERE seq=${id}`;
+
+    try {
+        const conn = await pool.getConnection();
+        const [result] = await conn.query(query);
+        conn.release();
+        return result;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+

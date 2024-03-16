@@ -38,6 +38,30 @@ export async function editURL(req: Request, res: Response,next: NextFunction) {
     }
 }
 
+export async function deleteURL(req: Request, res: Response,next: NextFunction) {
+    const id:number = Number(req.params.id);
+    try{
+        const _response = await userData.deleteURL(id);
+
+        res.status(200).json({message: "URL deleted",success: true});
+    }
+    catch(e){
+        next(e);
+    }
+}
+
+export async function deleteFile(req: Request, res: Response,next: NextFunction) {
+    const id:number = Number(req.params.id);
+    try{
+        const _response = await userData.deleteFile(id);
+
+        res.status(200).json({message: "File deleted",success: true});
+    }
+    catch(e){
+        next(e);
+    }
+}
+
 export async function selectURL(req: Request, res: Response,next: NextFunction) {
     const id:number = Number(req.params.id);
     try{

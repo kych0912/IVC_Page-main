@@ -56,6 +56,8 @@ app.post('/api/admin/editURL', editController.editURL);
 app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile);
 app.post('/api/admin/selectURL/:id', editController.selectURL);
 app.post('/api/admin/selectFile/:id', editController.selectFile);
+app.post('/api/admin/deleteURL/:id', editController.deleteURL);
+app.post('/api/admin/deleteFile/:id', editController.deleteFile);
 
 app.get('/api/admin/getURL', clientController.getURL);
 app.get('/api/admin/getURLs', editController.getURLs);
