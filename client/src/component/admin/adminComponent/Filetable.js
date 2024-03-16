@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
-import {selectFile} from "../../../api/admin";
+import {selectFile, deleteFile} from "../../../api/admin";
 const {useMutation,useQueryClient,useQuery} = require('react-query');
 
 const IOSSwitch = styled((props) => (
@@ -73,10 +73,22 @@ export default function URLtable(props){
     },
   });
 
-  function getFullYmdStr(d){
-    //년월일시분초 문자열 생성
-    return d.getFullYear() + "년 " + (d.getMonth()+1) + "월 " + d.getDate() + "일 " + d.getHours() + "시 " + d.getMinutes() + "분 " + d.getSeconds() + "초 " +  '일월화수목금토'.charAt(d.getUTCDay())+'요일';
+  const { mutate: deleteMutate, deleteIsLoading, deleteIsError, deleteError } = useMutation(deleteFile,{
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['file'] })
+    },
+  });
+
+  const handleDelete = (selected,seq) => {
+    if(selected){
+      alert("공개된 파일은 삭제할 수 없습니다.")
+    }
+    else{
+      deleteMutate(seq)
+    }
   }
+
 
   return(
     <>
@@ -129,7 +141,7 @@ export default function URLtable(props){
                   }/>
                 </TableCell>
                 <TableCell scope="row" align="right">
-                  <IconButton aria-label="delete">
+                  <IconButton onClick={()=>handleDelete(row.selected,row.seq)} aria-label="delete">
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
@@ -140,7 +152,7 @@ export default function URLtable(props){
   </TableContainer>
 
       {
-            isLoading?
+            isLoading||deleteIsLoading?
             <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%",zIndex:5}}>
                 <CircularProgress color="primary"/>
             </Box>

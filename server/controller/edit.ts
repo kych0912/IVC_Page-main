@@ -54,6 +54,10 @@ export async function deleteFile(req: Request, res: Response,next: NextFunction)
     const id:number = Number(req.params.id);
     try{
         const _response = await userData.deleteFile(id);
+        console.log(_response[0][0])
+        const fileName = _response[0][0].filename;
+
+        fs.unlinkSync(path.join(__dirname, './../uploads/') + fileName);
 
         res.status(200).json({message: "File deleted",success: true});
     }

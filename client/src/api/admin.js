@@ -68,3 +68,23 @@ export async function selectFile(id){
         return e.response;
     }
 }
+
+export async function deleteURL(id){
+    try{
+        const _response = await axios.post(`/api/admin/deleteURL/${id}`);
+        return _response.data;
+    }
+    catch(e){
+        return e.response;
+    }
+}
+
+export async function deleteFile(id){
+    try{
+        const _response = await axios.post(`/api/admin/deleteFile/${id}`);
+        return _response.data;
+    }
+    catch(e){
+        return e.response;
+    }
+}

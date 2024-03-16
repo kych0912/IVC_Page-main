@@ -55,7 +55,7 @@ export async function insertFilePath(path: string, filename: string): Promise<an
 };
 
 export async function deleteURL(id: number): Promise<any> {
-    const query = `DELETE FROM submit_table WHERE id=${id}`;
+    const query = `DELETE FROM submit_table WHERE seq=${id}`;
 
     try {
         const conn = await pool.getConnection();
@@ -131,13 +131,15 @@ export async function setFileSelected(id: number): Promise<any> {
 }
 
 export async function deleteFile(id: number): Promise<any> {
+    const getNamequery = `SELECT * FROM file_table WHERE seq=${id}`;
     const query = `DELETE FROM file_table WHERE seq=${id}`;
 
     try {
         const conn = await pool.getConnection();
+        const [fileRow] = await conn.query(getNamequery);
         const [result] = await conn.query(query);
         conn.release();
-        return result;
+        return [fileRow,result];
     } catch (err) {
         console.error(err);
         throw err;

@@ -8,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
-import {selectURL} from "../../../api/admin";
+import {selectURL, deleteURL} from "../../../api/admin";
 const {useMutation,useQueryClient,useQuery} = require('react-query');
 
 const IOSSwitch = styled((props) => (
@@ -73,6 +73,20 @@ export default function URLtable(props){
     },
   });
 
+  const { mutate: deleteMutate, deleteIsLoading, deleteIsError, deleteError } = useMutation(deleteURL,{
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['url'] })
+    },
+  });
+
+  const handleDelete = (seq,selected) => {
+    if(selected){
+      alert("공개된 URL은 삭제할 수 없습니다.")
+    }else{
+      deleteMutate(seq)
+    }
+  }
 
   return(
     <>
@@ -115,7 +129,7 @@ export default function URLtable(props){
                       }/>
                     </TableCell>
                   <TableCell scope="row" align="right">
-                    <IconButton aria-label="delete">
+                    <IconButton onClick={()=>handleDelete(row.selected,row.seq)} aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
@@ -126,7 +140,7 @@ export default function URLtable(props){
       </TableContainer>
 
       {
-            isLoading?
+            isLoading||deleteIsLoading?
             <Box sx={{position:'fixed',left: '50%',transform:'translate(-50%, 0)',top:"50%",zIndex:5}}>
                 <CircularProgress color="primary"/>
             </Box>
