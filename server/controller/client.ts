@@ -3,6 +3,7 @@ import { AdminUser } from "../model/user";
 import * as userData from "../data/db";
 import * as ClientDB from "../data/ClientDB";
 import fs from 'fs'
+import path from 'path'
 
 export async function getURL(req: Request, res: Response,next: NextFunction) {
     try{
@@ -19,8 +20,11 @@ export async function getFile(req: Request, res: Response,next: NextFunction) {
     try{
         const _response = await ClientDB.getFileSelected();
 
+
         const filename = _response[0].filename;
-        const filePath = __dirname + "/../uploads/" + filename;
+        const filePath = path.join(__dirname, "..", "uploads", filename);;
+
+        console.log(filePath)
 
         fs.access(filePath, fs.constants.F_OK, (err) => {
             if (err) {
@@ -28,7 +32,8 @@ export async function getFile(req: Request, res: Response,next: NextFunction) {
                 return res.status(404).send('File not found');
             }
 
-            res.download(filePath, filename, (downloadError) => {
+
+            res.download(filePath,encodeURIComponent(filename), (downloadError) => {
                 if (downloadError) {
                     console.error("Error downloading the file.");
                     next(downloadError);

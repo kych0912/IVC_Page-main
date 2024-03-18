@@ -28,16 +28,21 @@ export default function Main(){
     const Download = async () => {
         setDownloadLoading(true);
         const _response = await downloadFile();
-        console.log(_response);
+        const filename = decodeURIComponent(_response.headers['content-disposition']
+            .split('filename=')[1]
+            .split(';')[0]
+            .replace(/\"/g, '')
+            );
+        console.log(filename)
 
         const url = window.URL.createObjectURL(new Blob([_response.data]));
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', _response.filename);
-        link.setAttribute('id', 'tempLink');
+        link.setAttribute('download', filename ); // 여기서 파일명과 확장자를 설정합니다.
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
+        link.parentNode.removeChild(link);
+
         setDownloadLoading(false);
     }
 

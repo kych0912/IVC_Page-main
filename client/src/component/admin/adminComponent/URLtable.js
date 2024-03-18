@@ -80,7 +80,7 @@ export default function URLtable(props){
     },
   });
 
-  const handleDelete = (seq,selected) => {
+  const handleDelete = (selected,seq) => {
     if(selected){
       alert("공개된 URL은 삭제할 수 없습니다.")
     }else{

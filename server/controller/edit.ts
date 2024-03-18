@@ -54,7 +54,7 @@ export async function deleteFile(req: Request, res: Response,next: NextFunction)
     const id:number = Number(req.params.id);
     try{
         const _response = await userData.deleteFile(id);
-        console.log(_response[0][0])
+
         const fileName = _response[0][0].filename;
 
         fs.unlinkSync(path.join(__dirname, './../uploads/') + fileName);
@@ -124,7 +124,7 @@ export async function uploadFile(req: Request, res: Response,next: NextFunction)
     const base64ToArray = file.split(";base64,");
     const extension = "docx";
 
-    const fileData = base64ToArray[0];
+    const fileData = base64ToArray[1];
     const fileName = name;
     const filePath = path.join(__dirname, './../uploads/') + fileName;
 
