@@ -69,6 +69,18 @@ export async function selectFile(id){
     }
 }
 
+export async function getFileBySeq(id){
+    try{
+        const _response = await axios.get(`/api/admin/getFile/${id}`,{
+            responseType: 'blob'
+        });
+        return _response;
+    }
+    catch(e){
+        return e.response;
+    }
+}
+
 export async function deleteURL(id){
     try{
         const _response = await axios.post(`/api/admin/deleteURL/${id}`);

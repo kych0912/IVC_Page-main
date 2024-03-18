@@ -130,6 +130,20 @@ export async function setFileSelected(id: number): Promise<any> {
     }
 }
 
+export async function getFileBySeq(seq: number): Promise<any> {
+    const query = `SELECT * FROM file_table WHERE seq=${seq}`;
+
+    try {
+        const conn = await pool.getConnection();
+        const [result] = await conn.query(query);
+        conn.release();
+        return result;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
 export async function deleteFile(id: number): Promise<any> {
     const getNamequery = `SELECT * FROM file_table WHERE seq=${id}`;
     const query = `DELETE FROM file_table WHERE seq=${id}`;

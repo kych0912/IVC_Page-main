@@ -28,12 +28,17 @@ export default function Main(){
     const Download = async () => {
         setDownloadLoading(true);
         const _response = await downloadFile();
+
+        if(_response.response){
+            alert('다운로드에 실패했습니다.');
+            setDownloadLoading(false);
+            return;
+          }
         const filename = decodeURIComponent(_response.headers['content-disposition']
             .split('filename=')[1]
             .split(';')[0]
             .replace(/\"/g, '')
-            );
-        console.log(filename)
+        );
 
         const url = window.URL.createObjectURL(new Blob([_response.data]));
         const link = document.createElement('a');

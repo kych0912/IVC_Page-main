@@ -24,8 +24,6 @@ export async function getFile(req: Request, res: Response,next: NextFunction) {
         const filename = _response[0].filename;
         const filePath = path.join(__dirname, "..", "uploads", filename);;
 
-        console.log(filePath)
-
         fs.access(filePath, fs.constants.F_OK, (err) => {
             if (err) {
                 console.error("File doesn't exist.");

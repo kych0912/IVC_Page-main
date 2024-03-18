@@ -112,6 +112,35 @@ export async function getFiles(req: Request, res: Response,next: NextFunction) {
     }
 }
 
+export async function getFileBySeq(req: Request, res: Response,next: NextFunction) {
+    const seq:number = Number(req.params.seq);
+    try{
+        const _response = await userData.getFileBySeq(seq);
+
+        const filename = _response[0].filename;
+        const filePath = path.join(__dirname, "..", "uploads", filename);;
+
+        fs.access(filePath, fs.constants.F_OK, (err) => {
+            if (err) {
+                console.error("File doesn't exist.");
+                return res.status(404).send('File not found');
+            }
+
+
+            res.download(filePath,encodeURIComponent(filename), (downloadError) => {
+                if (downloadError) {
+                    console.error("Error downloading the file.");
+                    next(downloadError);
+                } else {
+                    console.log("File successfully sent to client.");
+                }
+            });
+        });
+    }
+    catch(e){
+        next(e);
+    }
+}
 
 export async function uploadFile(req: Request, res: Response,next: NextFunction) {
     const file:string = req.body.file;
