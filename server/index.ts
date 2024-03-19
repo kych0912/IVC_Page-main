@@ -52,20 +52,23 @@ app.use(cors({
 
 app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
+app.get('/api/admin/auth', clientController.Auth);
+app.get('/api/admin/logout', loginController.logOut);
+
+
 app.post('/api/admin/editURL', editController.editURL);
 app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile);
 app.post('/api/admin/selectURL/:id', editController.selectURL);
 app.post('/api/admin/selectFile/:id', editController.selectFile);
 app.post('/api/admin/deleteURL/:id', editController.deleteURL);
 app.post('/api/admin/deleteFile/:id', editController.deleteFile);
+app.get('/api/admin/getURLs', editController.getURLs);
+app.get('/api/admin/getFiles', editController.getFiles);
+app.get('/api/admin/getFile/:seq', editController.getFileBySeq);
 
 app.get('/api/admin/getURL', clientController.getURL);
-app.get('/api/admin/getURLs', editController.getURLs);
 app.get('/api/admin/getFile', clientController.getFile);
-app.get('/api/admin/getFiles', editController.getFiles);
-app.get('/api/admin/auth', clientController.Auth);
-app.get('/api/admin/logout', loginController.logOut);
-app.get('/api/admin/getFile/:seq', editController.getFileBySeq);
+
 
 
 app.use(function(req, res, next) {
