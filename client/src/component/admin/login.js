@@ -26,7 +26,7 @@ export default function Login(){
         setLoading(true);
         const response = await getLogin(id,password);
 
-        if(response.loginSuccess){
+        if(response.success){
             navigate('/admin/edit');
         }
         else{

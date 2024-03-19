@@ -28,7 +28,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
             const token = await UserData.generateToken(tokenUser);
 
-            res.cookie("x_auth", token).status(200).json({ loginSuccess: true, userId: user.name});
+            res.cookie("x_auth", token).status(200).json({ success: true, userId: user.name});
 
         } else {
             res.json({
@@ -50,10 +50,10 @@ export async function register(req: Request, res: Response,next: NextFunction) {
         const _response = await UserData.createUser(user);
 
         if (!_response.affectedRows) {
-            res.send("User already exists");
+            res.status(201).send("User already exists");
         } else {
             // UserData.createUser(name, password);
-            res.send("User created");
+            res.status(200).send("User created");
         }
     }
     catch(e){
