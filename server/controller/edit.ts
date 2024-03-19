@@ -151,8 +151,7 @@ export async function uploadFile(req: Request, res: Response,next: NextFunction)
     }
 
     const base64ToArray = file.split(";base64,");
-    const extension = "docx";
-
+    
     const fileData = base64ToArray[1];
     const fileName = name;
     const filePath = path.join(__dirname, './../uploads/') + fileName;

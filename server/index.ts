@@ -58,10 +58,10 @@ app.get('/api/admin/logout', loginController.logOut);
 
 app.post('/api/admin/editURL', editController.editURL);
 app.post('/api/admin/uploadFile',upload.single("file"), editController.uploadFile);
-app.post('/api/admin/selectURL/:id', editController.selectURL);
-app.post('/api/admin/selectFile/:id', editController.selectFile);
-app.post('/api/admin/deleteURL/:id', editController.deleteURL);
-app.post('/api/admin/deleteFile/:id', editController.deleteFile);
+app.put('/api/admin/selectURL/:id', editController.selectURL);
+app.put('/api/admin/selectFile/:id', editController.selectFile);
+app.delete('/api/admin/deleteURL/:id', editController.deleteURL);
+app.delete('/api/admin/deleteFile/:id', editController.deleteFile);
 app.get('/api/admin/getURLs', editController.getURLs);
 app.get('/api/admin/getFiles', editController.getFiles);
 app.get('/api/admin/getFile/:seq', editController.getFileBySeq);

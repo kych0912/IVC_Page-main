@@ -41,7 +41,7 @@ export async function getURLs(){
 
 export async function selectURL(id){
     try{
-        const _response = await axios.post(`/api/admin/selectURL/${id}`);
+        const _response = await axios.put(`/api/admin/selectURL/${id}`);
         return _response.data;
     }
     catch(e){
@@ -61,7 +61,7 @@ export async function getFiles(){
 
 export async function selectFile(id){
     try{
-        const _response = await axios.post(`/api/admin/selectFile/${id}`);
+        const _response = await axios.put(`/api/admin/selectFile/${id}`);
         return _response.data;
     }
     catch(e){
@@ -83,7 +83,7 @@ export async function getFileBySeq(id){
 
 export async function deleteURL(id){
     try{
-        const _response = await axios.post(`/api/admin/deleteURL/${id}`);
+        const _response = await axios.delete(`/api/admin/deleteURL/${id}`);
         return _response.data;
     }
     catch(e){
@@ -93,7 +93,7 @@ export async function deleteURL(id){
 
 export async function deleteFile(id){
     try{
-        const _response = await axios.post(`/api/admin/deleteFile/${id}`);
+        const _response = await axios.delete(`/api/admin/deleteFile/${id}`);
         return _response.data;
     }
     catch(e){
