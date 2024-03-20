@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getURL() {
     try{
-        const _response = await axios.get(`/api/admin/getURL`);
+        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/getURL`);
         return _response.data;
     }
     catch(e){
@@ -12,7 +12,7 @@ export async function getURL() {
 
 export async function downloadFile() {
     try{
-        const _response = await axios.get(`/api/admin/getFile`,{
+        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/getFile`,{
             responseType: 'blob'
         });
         return _response;
@@ -24,7 +24,7 @@ export async function downloadFile() {
 
 export async function auth(){
     try{
-        const _response = axios.get(`/api/admin/auth`);
+        const _response = axios.get(`${process.env.REACT_APP_URL}/api/admin/auth`);
         return _response;
     }
     catch(e){

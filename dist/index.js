@@ -63,7 +63,7 @@ app.get('/welcome', (req, res, next) => {
     res.send('welcome!');
 });
 app.use((0, cors_1.default)({
-    origin: 'https://ivc-inha.co.kr',
+    origin: '*',
     credentials: true,
     optionsSuccessStatus: 200,
 }));

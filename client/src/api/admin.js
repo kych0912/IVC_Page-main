@@ -6,7 +6,7 @@ export async function editURL(url){
             url:url
         }
 
-        const _response = await axios.post(`/api/admin/editURL`,body);
+        const _response = await axios.post(`${process.env.REACT_APP_URL}/api/admin/editURL`,body);
         return _response.data;
     }
     catch(e){
@@ -21,7 +21,7 @@ export async function editFile(filename,base64){
             file:base64[0]
         }
         
-        const _response = await axios.post(`/api/admin/uploadFile`,body);
+        const _response = await axios.post(`${process.env.REACT_APP_URL}/api/admin/uploadFile`,body);
         return _response.data;
     }
     catch(e){
@@ -31,7 +31,7 @@ export async function editFile(filename,base64){
 
 export async function getURLs(){
     try{
-        const _response = await axios.get(`/api/admin/getURLs`);
+        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/getURLs`);
         return _response.data;
     }
     catch(e){
@@ -41,7 +41,7 @@ export async function getURLs(){
 
 export async function selectURL(id){
     try{
-        const _response = await axios.put(`/api/admin/selectURL/${id}`);
+        const _response = await axios.put(`${process.env.REACT_APP_URL}/api/admin/selectURL/${id}`);
         return _response.data;
     }
     catch(e){
@@ -51,7 +51,7 @@ export async function selectURL(id){
 
 export async function getFiles(){
     try{
-        const _response = await axios.get(`/api/admin/getFiles`);
+        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/getFiles`);
         return _response.data;
     }
     catch(e){
@@ -61,7 +61,7 @@ export async function getFiles(){
 
 export async function selectFile(id){
     try{
-        const _response = await axios.put(`/api/admin/selectFile/${id}`);
+        const _response = await axios.put(`${process.env.REACT_APP_URL}/api/admin/selectFile/${id}`);
         return _response.data;
     }
     catch(e){
@@ -71,7 +71,7 @@ export async function selectFile(id){
 
 export async function getFileBySeq(id){
     try{
-        const _response = await axios.get(`/api/admin/getFile/${id}`,{
+        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/getFile/${id}`,{
             responseType: 'blob'
         });
         return _response;
@@ -83,7 +83,7 @@ export async function getFileBySeq(id){
 
 export async function deleteURL(id){
     try{
-        const _response = await axios.delete(`/api/admin/deleteURL/${id}`);
+        const _response = await axios.delete(`${process.env.REACT_APP_URL}/api/admin/deleteURL/${id}`);
         return _response.data;
     }
     catch(e){
@@ -93,7 +93,7 @@ export async function deleteURL(id){
 
 export async function deleteFile(id){
     try{
-        const _response = await axios.delete(`/api/admin/deleteFile/${id}`);
+        const _response = await axios.delete(`${process.env.REACT_APP_URL}/api/admin/deleteFile/${id}`);
         return _response.data;
     }
     catch(e){
