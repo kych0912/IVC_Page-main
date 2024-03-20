@@ -10,7 +10,7 @@ DB에 저장된 파일 중 특정 id를 삭제합니다.
 
 * **Method:**
 
-  `POST`
+  `DELETE`
 
 * **URLParms:**<br/>
   **Required:** <br/>

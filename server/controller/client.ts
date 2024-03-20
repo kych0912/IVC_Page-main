@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { AdminUser } from "../model/user";
 import * as userData from "../data/db";
 import * as ClientDB from "../data/ClientDB";
 import fs from 'fs'

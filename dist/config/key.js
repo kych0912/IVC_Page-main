@@ -1,5 +1,10 @@
 "use strict";
-module.exports = {
-    IPv4: "52.90.189.165",
-    port: "3142",
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.key = void 0;
+exports.key = {
+    IPv4: "3.91.196.73",
+    port: "3306",
+    user: 'ivc',
+    password: 'IVCinha1997!',
+    database: 'ivc'
 };
