@@ -54,7 +54,7 @@ function insertFilePath(path, filename) {
     return __awaiter(this, void 0, void 0, function* () {
         const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
         const changeselect = `UPDATE file_table SET selected=false WHERE selected=true`;
-        const query = `INSERT INTO file_table(dir, time, filename,selected) VALUES("${path}", "${date}", "${filename}",true)`;
+        const query = `INSERT INTO file_table(time, filename,selected) VALUES("${path}", "${date}", "${filename}",true)`;
         try {
             const conn = yield mysql_1.default.getConnection();
             yield conn.query(changeselect);
