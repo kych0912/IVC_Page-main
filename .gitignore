@@ -2,3 +2,5 @@ node_modules
 
 server/config
 server/uploads
+
+.env.production
