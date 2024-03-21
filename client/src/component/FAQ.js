@@ -4,7 +4,7 @@ import Accordion from './accordion';
 
 export default function Main(){
     return(
-        <Box sx={{ width:'100%',backgroundColor:'black'}}>
+        <Box sx={{ width:'100%',backgroundColor:'#1b1b1b'}}>
           <Box sx={{display:'flex',justifyContent:'start',alignItems:'start',flexDirection:'column',pt:15}}>
             <Box sx={{pb:5}}>
               <Typography color="white" sx={{fontSize:40,fontFamily:'SUIT Variable',fontWeight:"bold"}}>

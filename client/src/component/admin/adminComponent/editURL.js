@@ -28,6 +28,7 @@ function Admin(){
     }
 
     return(
+        <Box sx={{}}>
         <Paper sx={{ maxWidth: 936, margin: 'auto', overflow: 'hidden' }}> 
             <Box sx={{p:1.5}}>
                 <Typography sx={{mb:1, fontFamily:'SUIT Variable',fontWeight:800,fontSize:'1rem' }} color="text.secondary" >
@@ -73,6 +74,7 @@ function Admin(){
                 }
             </Box>           
         </Paper>
+        </Box>
     )
 }
 

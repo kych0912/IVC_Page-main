@@ -75,7 +75,7 @@ export default function TemporaryDrawer() {
     <div>
         <React.Fragment key={'top'}>
             <Button onClick={toggleDrawer('top', true)}>
-                <AiOutlineMenu size ='27' color={scrollPosition < 100 ? 'white': 'black'}/>
+                <AiOutlineMenu size ='27' color={scrollPosition < 100 ? 'white': 'white'}/>
             </Button>
             <Drawer
             anchor={'top'}

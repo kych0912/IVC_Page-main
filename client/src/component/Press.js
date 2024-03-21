@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 export default function Main(){
     return(
-        <Box sx={{ width:'100%',backgroundColor:'black',height:{xs:'120vh',md:'150%'}}}>
+        <Box sx={{ width:'100%',backgroundColor:'#1b1b1b',height:{xs:'120vh',md:'150%'}}}>
           <Box sx={{px:2,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',pt:20}}>
             <Box sx={{pb:5,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
                 <Typography color="white" sx={{fontSize:50,fontFamily:'SUIT Variable',fontWeight:"bold"}}>

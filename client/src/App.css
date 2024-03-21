@@ -5,8 +5,8 @@
 }
 
 @font-face {
-  font-family: 'GmarketSansMedium';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-family: 'SUIT Variable';
+  src: url('./SUIT-Variable-ttf/SUIT-Variable.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -33,7 +33,7 @@
 
 .App-header {
   background-image: url(./IVC_BG1.gif);
-  background-size: cover; 
+  background-size: 100vh; 
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
@@ -45,7 +45,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #bd3232;
 
 }
 

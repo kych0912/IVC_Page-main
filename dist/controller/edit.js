@@ -191,7 +191,7 @@ function uploadFile(req, res, next) {
         const fileData = base64ToArray[1];
         const fileName = name;
         const filePath = path_1.default.join(__dirname, './../uploads/') + fileName;
-        
+        console.log(filePath);
         fs_1.default.writeFileSync(filePath, fileData, { encoding: 'base64' });
         if (!file) {
             return res.status(400).json(util.fail(400, "No file uploaded"));

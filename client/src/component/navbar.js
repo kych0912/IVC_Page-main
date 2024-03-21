@@ -35,14 +35,14 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1, color:'white' }}>
-      <AppBar width="100%" position="fixed" color = {scrollPosition < 100 ? 'transparent': ''} >
+      <AppBar width="100%" position="fixed" sx={{boxShadow:'none',backdropFilter:"blur(30px)",backgroundColor:"rgba(0, 0, 0, 0.2)"}} >
         <Toolbar sx = {{height:70, size:30}}>
             <Link underline="none" color="inherit" href="/">
               <Typography
                   variant="h4"
                   noWrap
                   component="div"
-                  sx={{ display: { xs: 'none', sm: 'block' },pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold"}}
+                  sx={{ display: { xs: 'none', sm: 'block' },pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold",color:"white"}}
               >
                 Inha Venture Club
               </Typography>
@@ -52,7 +52,7 @@ export default function PrimarySearchAppBar() {
                   variant="h4"
                   noWrap
                   component="div"
-                  sx={{ display: { xs: 'block', sm: 'none' },pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold"}}
+                  sx={{ display: { xs: 'block', sm: 'none' },pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold",color:"white"}}
               >
                   IVC
               </Typography>
@@ -65,7 +65,7 @@ export default function PrimarySearchAppBar() {
                 variant="h4"
                 noWrap
                 component="div"
-                sx={{ display: { xs: 'block', sm: 'block' },pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold"}}
+                sx={{ display: { xs: 'block', sm: 'block' },pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold",color:"white"}}
                 >
                   Media
                 </Typography>
@@ -75,7 +75,7 @@ export default function PrimarySearchAppBar() {
                     variant="h4"
                     noWrap
                     component="div"
-                    sx={{ display: { xs: 'block', sm: 'block' } ,pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold"}}
+                    sx={{ display: { xs: 'block', sm: 'block' } ,pr:5,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold",color:"white"}}
                 >
                     Contact
                 </Typography>
@@ -85,7 +85,7 @@ export default function PrimarySearchAppBar() {
                     variant="h4"
                     noWrap
                     component="div"
-                    sx={{ display: { xs: 'block', sm: 'block' },pr:5 ,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold"}}
+                    sx={{ display: { xs: 'block', sm: 'block' },pr:5 ,fontSize:25,fontFamily:'SUIT Variable',fontWeight:"bold",color:"white"}}
                 >
                     Recruit
                 </Typography>

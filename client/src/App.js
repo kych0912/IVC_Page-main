@@ -7,6 +7,7 @@ import Login from "./component/admin/login"
 import Paperbase from './component/admin/PaperBase';
 import Edit from './component/admin/adminComponent/Edit';
 import Table from './component/admin/adminComponent/editTable';
+import NotFound from './component/NotFound';
 import { Outlet } from 'react-router-dom';
 
 import {
@@ -27,15 +28,6 @@ const WithNav = () =>{
     </>
   )
 }
-
-const WithoutNav =()=>{
-  return(
-    <>
-    <Outlet/>
-    </>
-  )
-}
-
 function App() {
   const queryClient = new QueryClient()
 
@@ -48,6 +40,7 @@ function App() {
             <Route path="/Press" element={<Press/>}/>
             <Route path="/FAQ" element={<Faq/>}/>
             <Route path="/recruit" element={<Recruit/>}/>
+            <Route path="/*" element={<NotFound/>}/>
           </Route>
           
           <Route path="/admin/login" element={<Login/>}/>

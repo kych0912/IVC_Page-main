@@ -12,11 +12,6 @@ const theme = createTheme({
         main:'#D6D6D6',
       },
     },
-    typhography: {
-      fontFamily: [
-        'Pretendard Variable',
-      ]
-    }
 });
 
 

@@ -65,7 +65,7 @@ export default function Main(){
     },[])
 
     return(
-        <Box className="App-header" sx={{ width:'100%',backgroundColor:'black',height:'100vh'}}>
+        <Box className="App-header" sx={{ width:'100%',backgroundColor:'#1b1b1b',height:'100vh'}}>
           <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',pt:8}}>
             <Box sx={{pb:5,display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
                 <Typography color="white" sx={{fontSize:50,fontFamily:'SUIT Variable',fontWeight:"bold"}}>

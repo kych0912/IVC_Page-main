@@ -176,7 +176,7 @@ function Paperbase(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: {sm:'flex',xs:"block"}, minHeight: '100vh' }}>
+      <Box sx={{ display: {sm:'flex',xs:"block"}, minHeight: '100vh', bgcolor: '#eaeff1' }}>
         <CssBaseline />
         <Box
           component="nav"

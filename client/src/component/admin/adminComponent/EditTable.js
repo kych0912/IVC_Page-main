@@ -12,8 +12,8 @@ export default function EditTable() {
     const filequery = useQuery('file',getFiles);
 
     return (
-        <>
-        <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
+        <Box sx={{bgcolor:"#eaeff1"}}>
+        <Box component="main" sx={{ flex: 1, py: 6, px: 4 }}>
             <Paper sx={{  margin: 'auto', overflow: 'hidden' }}> 
                 <Box sx={{p:1.5}}>
                     <Typography sx={{mb:1, fontFamily:'SUIT Variable',fontWeight:800,fontSize:'1rem' }} color="text.secondary" >
@@ -29,7 +29,7 @@ export default function EditTable() {
         </Box>
         
 
-        <Box component="main" sx={{ flex: 1, pt: 1, pb:6, px: 4, bgcolor: '#eaeff1' }}>
+        <Box component="main" sx={{ flex: 1, pt: 1, pb:6, px: 4}}>
             <Paper sx={{ margin: 'auto', overflow: 'hidden' }}> 
                 <Box sx={{p:1.5}}>
                     <Typography sx={{mb:1, fontFamily:'SUIT Variable',fontWeight:800,fontSize:'1rem' }} color="text.secondary" >
@@ -51,6 +51,6 @@ export default function EditTable() {
             :
             ""
         }
-        </>
+        </Box>
     )
 }

@@ -8,19 +8,18 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import image1 from "../image/KakaoTalk_Photo_2022-12-18-17-09-30+025.jpeg"
+import image2 from "../image/KakaoTalk_Photo_2022-12-18-17-12-45+001.jpeg"
+import image3 from "../image/KakaoTalk_Photo_2022-12-18-17-25-45+005.jpeg"
 import { useNavigate } from "react-router-dom";
 
 
-const cards = ["https://ivcpageimg.s3.ap-northeast-2.amazonaws.com/KakaoTalk_Photo_2022-12-18-17-09-30+025.jpeg"
-                , "https://ivcpageimg.s3.ap-northeast-2.amazonaws.com/KakaoTalk_Photo_2022-12-18-17-12-45+001.jpeg"
-                , "https://ivcpageimg.s3.ap-northeast-2.amazonaws.com/KakaoTalk_Photo_2022-12-18-17-25-45+005.jpeg"];
+const cards = [image1
+                , image2
+                , image3];
 
 const cards_title = ["정기 총회 및 네트워킹","10만원 프로젝트","우린 스타트업"];
 const cards_content = ["창업에 대한 기본적인","10만원 예산 내에서","린 스타트업에 대해 학습,"];
@@ -32,15 +31,15 @@ export default function Main(){
     const onRecruitHandler = () =>{
         navigate("/Recruit")
     }
-
+    
     return(
-        <Box sx={{textAlign:'center',backgroundColor:'black',width:'100%'}}>
+        <Box sx={{textAlign:'center',backgroundColor:'#1b1b1b',width:'100%'}}>
             <header className="App-header">
                 <p className='mainslogun'>
-                    IN your VENture, 
+                    Accelerate your INVENtion 
                 </p>
                 <p className='mainslogun1'>
-                    With our IVC
+                    With IVC
                 </p>
             </header>
 
@@ -120,17 +119,17 @@ export default function Main(){
                                     >
                                     <CardMedia
                                         component="img"
-                                        image={cards[index]}
+                                        src={cards[index]}
                                         alt="random"
                                     />
                                     <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography gutterBottom variant="h5" component="h2" sx={{ justifyContent:'center',fontFamily:'SUIT Variable',fontWeight:"bold",alignItems:'center'}}>
+                                        <Typography gutterBottom variant="h5" component="h2" sx={{ justifyContent:'center',fontFamily:'SUIT Variable',alignItems:'center'}}>
                                             {cards_title[index]}
                                         </Typography>
-                                        <Typography sx={{ fontSize:18 ,justifyContent:'center',fontFamily:'  Variable',fontWeight:"bold",alignItems:'center'}}>
+                                        <Typography sx={{ fontSize:18 ,justifyContent:'center',fontFamily:'SUIT Variable',alignItems:'center'}}>
                                             {cards_content[index]}  
                                         </Typography>
-                                        <Typography sx={{ fontSize:18 ,justifyContent:'center',fontFamily:'  Variable',fontWeight:"bold",alignItems:'center'}}>
+                                        <Typography sx={{ fontSize:18 ,justifyContent:'center',fontFamily:'SUIT Variable',alignItems:'center'}}>
                                             {cards_content1[index]}  
                                         </Typography>
                                     </CardContent>
