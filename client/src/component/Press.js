@@ -1,5 +1,5 @@
 import {Box,Typography,Button,Link} from '@mui/material';
-import React, { useState } from "react";
+import React from "react";
 
 export default function Main(){
     return(
@@ -13,7 +13,7 @@ export default function Main(){
                 <Box sx={{display:'flex',flexDirection:'column'}}>
                     <Link underline="none" color="inherit" href="https://magazine.hankyung.com/job-joy/article/202010193231b">
                         <Box sx={{display:'flex',justifyContent:'center',py:{xs:3,md:5},alignItems:'center',borderTop:1,borderColor:'white'}}>
-                            <Box sx={{justifyContent:'center',width:'30%'}}>
+                            <Box sx={{justifyContent:'center',width:'30%' }}>
                                 <Typography color='white' fontSize={{xs:10, md:20}} sx={{ justifyContent:'center',fontFamily:'SUIT Variable',fontWeight:"bold",alignItems:'center'}}>
                                     NEWS
                                 </Typography>
