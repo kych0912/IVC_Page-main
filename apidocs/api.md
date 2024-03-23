@@ -1,18 +1,18 @@
 ## 인하벤처클럽 API
 ---
 ### 로그인 
- - [로그인] (#LOGIN.md)
- - [회원가입] (#apidocs/login/REGISTER.md)
- - [로그아웃] (#apidocs/login/LOGOUT.md)
- - [인증] (#apidocs/login/AUTH.md)
+ - [로그인](#LOGIN.md)
+ - [회원가입](#apidocs/login/REGISTER.md)
+ - [로그아웃](#apidocs/login/LOGOUT.md)
+ - [인증](#apidocs/login/AUTH.md)
 
 ### 클라이언트
- - [구글폼 링크 조회] (#apidocs/client/GETURL.md)
- - [지원서 다운로드] (#apidocs/client/GETFILE.md)
+ - [구글폼 링크 조회](#apidocs/client/GETURL.md)
+ - [지원서 다운로드](#apidocs/client/GETFILE.md)
 
 ### 어드민
- - [구글폼 링크 생성] (#apidocs/admin/CREATEURL.md)
- - [파일 생성] (#apidocs/admin/CREATEFILE.md)
+ - [구글폼 링크 생성](#apidocs/admin/CREATEURL.md)
+ - [파일 생성](#apidocs/admin/CREATEFILE.md)
  - [구글폼 링크 선택 수정] (#apidocs/admin/SELECTURL.md)
  - [파일 선택 수정] (#apidocs/admin/SELECTFILE.md)
  - [구글폼 링크 삭제] (#apidocs/admin/DELETEURL.md)
