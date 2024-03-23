@@ -1,7 +1,7 @@
 ## 인하벤처클럽 API
 ---
 ### 로그인 
- - [로그인] (#apidocs/login/LOGIN.md)
+ - [로그인] (#LOGIN.md)
  - [회원가입] (#apidocs/login/REGISTER.md)
  - [로그아웃] (#apidocs/login/LOGOUT.md)
  - [인증] (#apidocs/login/AUTH.md)
