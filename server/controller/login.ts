@@ -28,7 +28,10 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
             const token = await UserData.generateToken(tokenUser);
 
-            res.cookie("x_auth", token).status(200).json({ success: true, userId: user.name});
+            res.cookie("x_auth", token,{
+                httpOnly: false,
+                sameSite:'none'
+            }).status(200).json({ success: true, userId: user.name});
 
         } else {
             res.json({

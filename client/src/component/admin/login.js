@@ -26,6 +26,8 @@ export default function Login(){
         setLoading(true);
         const response = await getLogin(id,password);
 
+        console.log(response);
+
         if(response.success){
             navigate('/admin/edit');
         }
