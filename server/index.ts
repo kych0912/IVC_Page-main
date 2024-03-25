@@ -44,11 +44,21 @@ app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
   res.send('welcome!');
 }); 
 
-app.use(cors({
-  origin: 'ivc-inha.co.kr',
-  credentials: true,
-  optionsSuccessStatus: 200,
-}));
+const whitelist = ['ivc-inha.co.kr','localhost:3000'];
+
+const corsOptions = {
+  origin: function (origin:any, callback:any) { 
+    if (whitelist.indexOf(origin) !== -1) { 
+      callback(null, true); 
+    } else {
+      callback(new Error("Not Allowed Origin!")); 
+    }
+  },
+  credentials: true
+};
+
+
+app.use(cors(corsOptions));
 
 app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
