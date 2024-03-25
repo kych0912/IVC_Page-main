@@ -30,10 +30,11 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
             res.cookie("x_auth", token,{
                 httpOnly: false,
-                sameSite:'none'
+                sameSite:'none',
+                secure:process.env.NODE_ENV !== 'development',
             }).status(200).json({ success: true, userId: user.name});
 
-        } else {
+        } else {    
             res.json({
                 message: "User not found",
             });

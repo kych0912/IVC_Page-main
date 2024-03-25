@@ -5,6 +5,8 @@ export async function getLogin(id,password) {
         const _response = await axios.post(`${process.env.REACT_APP_URL}/api/admin/login`,{
             name:id,
             password:password
+        },{
+            withCredentials:true
         });
 
         return _response.data;
