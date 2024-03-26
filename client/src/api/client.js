@@ -2,7 +2,9 @@ import axios from 'axios';
 
 export async function getURL() {
     try{
-        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/getURL`);
+        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/getURL`,{
+            withCredentials:true
+        });
         return _response.data;
     }
     catch(e){
@@ -24,7 +26,9 @@ export async function downloadFile() {
 
 export async function auth(){
     try{
-        const _response = axios.get(`${process.env.REACT_APP_URL}/api/admin/auth`);
+        const _response = axios.get(`${process.env.REACT_APP_URL}/api/admin/auth`,{
+            withCredentials:true
+        });
         return _response;
     }
     catch(e){

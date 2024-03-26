@@ -27,7 +27,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
             }
 
             const token = await UserData.generateToken(tokenUser);
-
+            
             res.cookie("x_auth", token,{
                 httpOnly: false,
                 sameSite:'none',

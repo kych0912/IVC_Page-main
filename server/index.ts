@@ -44,11 +44,11 @@ app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
   res.send('welcome!');
 }); 
 
-const whitelist = ['ivc-inha.co.kr','localhost:3000'];
+const whitelist = ['https://ivc-inha.co.kr','http://localhost:3000'];
 
 const corsOptions = {
   origin: function (origin:any, callback:any) { 
-    if (whitelist.indexOf(origin) !== -1) { 
+    if (!origin||whitelist.indexOf(origin) !== -1) { 
       callback(null, true); 
     } else {
       callback(new Error("Not Allowed Origin!")); 
