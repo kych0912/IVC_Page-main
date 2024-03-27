@@ -47,9 +47,7 @@ export async function getFile(req: Request, res: Response,next: NextFunction) {
 
 export async function Auth(req: Request, res: Response,next: NextFunction) {
     try{
-        console.log(req)
         const token:string = req.cookies.x_auth;
-        console.log(token)
         const _response = await userData.findSessionByToken(token);
 
         if(!_response){

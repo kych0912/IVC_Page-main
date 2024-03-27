@@ -3,8 +3,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useState } from 'react';
 import { getLogin } from '../../api/login';
 import { useNavigate } from 'react-router-dom';
+import Auth from "../../hoc/auth"
 
-export default function Login(){
+function Login(){
     const [id,setId] = useState('');
     const [password,setPassword] = useState('');
     const [loading,setLoading] = useState(false);
@@ -88,3 +89,5 @@ export default function Login(){
         </Box>
     )
 }
+
+export default Auth(Login,false,'/admin/edit')

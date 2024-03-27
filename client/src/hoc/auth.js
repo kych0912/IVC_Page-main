@@ -3,8 +3,14 @@ import { auth } from '../api/client';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loading from './loading';
+import { RiNumbersFill } from 'react-icons/ri';
 
-export default function withAuth(SpecificComponent, redirectTo = "/admin/login") {
+    //null    =>  아무나 출입이 가능한 페이지
+    //true    =>  로그인한 유저만 출입이 가능한 페이지
+    //false   =>  로그인한 유저는 출입 불가능한 페이지
+
+
+export default function withAuth(SpecificComponent,option=null, redirectTo = "/admin/login") {
     function AuthCheck() {
         const navigate = useNavigate();
         const { data, isLoading, isError } = useQuery('auth', auth,{
@@ -16,11 +22,19 @@ export default function withAuth(SpecificComponent, redirectTo = "/admin/login")
         if (isLoading) {
             return <Loading />;
         }
-    
+                
         if (isError || data.response) {
-            alert('로그인이 필요합니다');
-            navigate(redirectTo);
-            return null;
+            if(option){
+              alert('로그인이 필요합니다');
+              navigate(redirectTo);
+            }
+          }
+          else{
+            if(option!==null){
+              if(!option){
+                  navigate(redirectTo);
+              }
+          }
         }
     
         return <SpecificComponent />;

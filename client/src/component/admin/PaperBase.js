@@ -207,4 +207,4 @@ function Paperbase(props) {
   );
 }
 
-export default Auth(Paperbase);
+export default Auth(Paperbase,true);
