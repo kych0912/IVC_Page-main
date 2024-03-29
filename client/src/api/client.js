@@ -15,7 +15,8 @@ export async function getURL() {
 export async function downloadFile() {
     try{
         const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/getFile`,{
-            responseType: 'blob'
+            responseType: 'blob',
+            withCredentials:true
         });
         return _response;
     }

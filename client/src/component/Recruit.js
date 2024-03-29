@@ -29,11 +29,14 @@ export default function Main(){
         setDownloadLoading(true);
         const _response = await downloadFile();
 
+        console.log(_response)
+
         if(_response.response){
             alert('다운로드에 실패했습니다.');
             setDownloadLoading(false);
             return;
           }
+
         const filename = decodeURIComponent(_response.headers['content-disposition']
             .split('filename=')[1]
             .split(';')[0]
@@ -47,6 +50,7 @@ export default function Main(){
         document.body.appendChild(link);
         link.click();
         link.parentNode.removeChild(link);
+        URL.revokeObjectURL(url);
 
         setDownloadLoading(false);
     }
