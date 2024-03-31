@@ -54,7 +54,8 @@ const corsOptions = {
       callback(new Error("Not Allowed Origin!")); 
     }
   },
-  credentials: true
+  credentials: true,
+  exposedHeaders: ['Content-Disposition'],
 };
 
 
