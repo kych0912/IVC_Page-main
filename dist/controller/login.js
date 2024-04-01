@@ -53,7 +53,11 @@ function login(req, res, next) {
                     password: password
                 };
                 const token = yield UserData.generateToken(tokenUser);
-                res.cookie("x_auth", token).status(200).json({ success: true, userId: user.name });
+                res.cookie("x_auth", token, {
+                    httpOnly: false,
+                    sameSite: 'none',
+                    secure: process.env.NODE_ENV !== 'development',
+                }).status(200).json({ success: true, userId: user.name });
             }
             else {
                 res.json({
@@ -92,7 +96,17 @@ function logOut(req, res, next) {
         try {
             const token = req.cookies.x_auth;
             const _response = yield UserData.deleteSession(token);
-            res.clearCookie("x_auth").status(200).json({ message: "Logout success", success: true });
+            if (_response.affectedRows === 0) {
+                return res.status(400).json({ message: "Logout failed", success: false });
+            }
+            else {
+                res.clearCookie("x_auth", {
+                    path: '/',
+                    httpOnly: false,
+                    sameSite: 'none',
+                    secure: process.env.NODE_ENV !== 'development',
+                }).status(200).json({ message: "Logout success", success: true });
+            }
         }
         catch (e) {
             next(e);

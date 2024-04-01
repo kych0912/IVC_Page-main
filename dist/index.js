@@ -62,11 +62,20 @@ app.listen(port, () => {
 app.get('/welcome', (req, res, next) => {
     res.send('welcome!');
 });
-app.use((0, cors_1.default)({
-    origin: '*',
+const whitelist = ['https://ivc-inha.co.kr', 'http://localhost:3000'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin || whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not Allowed Origin!"));
+        }
+    },
     credentials: true,
-    optionsSuccessStatus: 200,
-}));
+    exposedHeaders: ['Content-Disposition'],
+};
+app.use((0, cors_1.default)(corsOptions));
 app.post('/api/admin/login', loginController.login);
 app.post('/api/admin/register', loginController.register);
 app.get('/api/admin/auth', clientController.Auth);

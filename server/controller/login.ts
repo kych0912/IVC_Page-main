@@ -70,11 +70,17 @@ export async function logOut(req: Request, res: Response,next: NextFunction) {
         const token = req.cookies.x_auth;
         const _response = await UserData.deleteSession(token);
 
-        res.clearCookie("x_auth",{
+        if(_response.affectedRows === 0){
+            return res.status(400).json({message: "Logout failed",success: false});
+        }
+        else{
+            res.clearCookie("x_auth",{
+                path:'/',
                 httpOnly: false,
                 sameSite:'none',
                 secure:process.env.NODE_ENV !== 'development',
-        }).status(200).json({message: "Logout success",success: true});
+            }).status(200).json({message: "Logout success",success: true});
+        }
     }
     catch(e){
         next(e);
