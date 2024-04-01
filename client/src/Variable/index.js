@@ -1,2 +1,0 @@
-export const resumeLink = "https://ivcresume.s3.ap-northeast-2.amazonaws.com/%EC%9D%B8%ED%95%98%EB%B2%A4%EC%B2%98%ED%81%B4%EB%9F%BD%2B27%EA%B8%B0%2B%EC%A7%80%EC%9B%90%EC%84%9C.docx";
-export const submitLink = "https://forms.gle/K5DJy9W8r2RTmftW7"

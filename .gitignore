@@ -1,9 +1,0 @@
-node_modules
-
-server/config
-server/uploads
-
-dist/config
-
-.env.production
-.env.development
