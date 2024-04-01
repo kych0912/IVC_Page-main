@@ -29,8 +29,6 @@ export default function Main(){
         setDownloadLoading(true);
         const _response = await downloadFile();
 
-        console.log(_response)
-
         if(_response.response){
             alert('다운로드에 실패했습니다.');
             setDownloadLoading(false);

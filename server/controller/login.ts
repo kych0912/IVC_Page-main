@@ -27,7 +27,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
             }
 
             const token = await UserData.generateToken(tokenUser);
-            
+
             res.cookie("x_auth", token,{
                 httpOnly: false,
                 sameSite:'none',
@@ -70,7 +70,11 @@ export async function logOut(req: Request, res: Response,next: NextFunction) {
         const token = req.cookies.x_auth;
         const _response = await UserData.deleteSession(token);
 
-        res.clearCookie("x_auth").status(200).json({message: "Logout success",success: true});
+        res.clearCookie("x_auth",{
+                httpOnly: false,
+                sameSite:'none',
+                secure:process.env.NODE_ENV !== 'development',
+        }).status(200).json({message: "Logout success",success: true});
     }
     catch(e){
         next(e);

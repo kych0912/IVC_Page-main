@@ -11,17 +11,13 @@ import Loading from './loading';
 
 export default function withAuth(SpecificComponent,option=null, redirectTo = "/admin/login") {
     function AuthCheck() {
-      const queryClient = useQueryClient();
         const navigate = useNavigate();
         const { data, isLoading, isError } = useQuery('auth', auth,{
-            retry: 1, 
+            retry: 1,
             retryDelay: 1000,
             staleTime: 10000,
             refetchOnWindowFocus:false
           });
-          console.log(data);
-
-          queryClient.removeQueries({queryKey:'auth'});
     
         if (isLoading) {
             return <Loading />;

@@ -18,7 +18,9 @@ export async function getLogin(id,password) {
 
 export async function logOut(){
     try{
-        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/logout`);
+        const _response = await axios.get(`${process.env.REACT_APP_URL}/api/admin/logout`,{
+            withCredentials:true
+        });
         return _response.data;
     }
     catch(e){
