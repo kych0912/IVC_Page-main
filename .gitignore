@@ -1,0 +1,10 @@
+node_modules
+
+config/
+key.js
+
+server/uploads
+
+
+.env.production
+.env.development
