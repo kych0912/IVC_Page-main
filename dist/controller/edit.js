@@ -90,7 +90,7 @@ function deleteFile(req, res, next) {
         const id = Number(req.params.id);
         try {
             const _response = yield userData.deleteFile(id);
-            const fileName = _response[0][0].filename;
+            const fileName = _response[0][0].uploadsname;
             fs_1.default.unlinkSync(path_1.default.join(__dirname, './../uploads/') + fileName);
             res.status(200).json({ message: "File deleted", success: true });
         }
@@ -190,14 +190,13 @@ function uploadFile(req, res, next) {
         const base64ToArray = file.split(";base64,");
         const fileData = base64ToArray[1];
         const fileName = name;
+        const uplaodsName = name + '-' + Date.now();
         const filePath = path_1.default.join(__dirname, './../uploads/') + fileName;
         console.log(filePath);
         fs_1.default.writeFileSync(filePath, fileData, { encoding: 'base64' });
-        if (!file) {
-            return res.status(400).json(util.fail(400, "No file uploaded"));
-        }
+        ``;
         try {
-            const _response = yield userData.insertFilePath(filePath, fileName);
+            const _response = yield userData.insertFilePath(filePath, fileName, uplaodsName);
             res.status(200).json(util.success(200, "File uploaded", true));
         }
         catch (e) {

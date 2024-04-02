@@ -50,11 +50,11 @@ function insertURL(url) {
     });
 }
 exports.insertURL = insertURL;
-function insertFilePath(path, filename) {
+function insertFilePath(path, filename, uploadsname) {
     return __awaiter(this, void 0, void 0, function* () {
         const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
         const changeselect = `UPDATE file_table SET selected=false WHERE selected=true`;
-        const query = `INSERT INTO file_table(time, filename,selected) VALUES("${date}", "${filename}",true)`;
+        const query = `INSERT INTO file_table(time, filename,selected,uploadsname) VALUES("${date}", "${filename}",true,"${uploadsname}")`;
         try {
             const conn = yield mysql_1.default.getConnection();
             yield conn.query(changeselect);

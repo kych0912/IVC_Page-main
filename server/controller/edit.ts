@@ -55,7 +55,7 @@ export async function deleteFile(req: Request, res: Response,next: NextFunction)
     try{
         const _response = await userData.deleteFile(id);
 
-        const fileName = _response[0][0].filename;
+        const fileName = _response[0][0].uploadsname;
 
         fs.unlinkSync(path.join(__dirname, './../uploads/') + fileName);
 
@@ -154,18 +154,15 @@ export async function uploadFile(req: Request, res: Response,next: NextFunction)
 
     const fileData = base64ToArray[1];
     const fileName = name;
+    const uplaodsName = name + '-' + Date.now()
     const filePath = path.join(__dirname, './../uploads/') + fileName;
 
     console.log(filePath);
 
     fs.writeFileSync(filePath, fileData,  { encoding: 'base64' });
-
-    if(!file){
-        return res.status(400).json(util.fail(400,"No file uploaded"));
-    }
-
+``
     try{
-        const _response = await userData.insertFilePath(filePath,fileName);
+        const _response = await userData.insertFilePath(filePath,fileName,uplaodsName);
 
         res.status(200).json(util.success(200,"File uploaded",true));
     }

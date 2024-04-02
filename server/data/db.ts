@@ -37,10 +37,10 @@ export async function insertURL (url:string):Promise<any> {
     }
 }
 
-export async function insertFilePath(path: string, filename: string): Promise<any> {
+export async function insertFilePath(path: string, filename: string,uploadsname:string): Promise<any> {
     const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const changeselect = `UPDATE file_table SET selected=false WHERE selected=true`
-    const query = `INSERT INTO file_table(time, filename,selected) VALUES("${date}", "${filename}",true)`;
+    const query = `INSERT INTO file_table(time, filename,selected,uploadsname) VALUES("${date}", "${filename}",true,"${uploadsname}")`;
 
     try {
         const conn = await pool.getConnection();
