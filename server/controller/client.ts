@@ -20,8 +20,9 @@ export async function getFile(req: Request, res: Response,next: NextFunction) {
         const _response = await ClientDB.getFileSelected();
 
 
+        const uploadsname = _response[0].uploadsname;
         const filename = _response[0].filename;
-        const filePath = path.join(__dirname, "..", "uploads", filename);;
+        const filePath = path.join(__dirname, "..", "uploads", uploadsname);;
 
         fs.access(filePath, fs.constants.F_OK, (err) => {
             if (err) {

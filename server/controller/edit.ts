@@ -155,7 +155,7 @@ export async function uploadFile(req: Request, res: Response,next: NextFunction)
     const fileData = base64ToArray[1];
     const fileName = name;
     const uplaodsName = name + '-' + Date.now()
-    const filePath = path.join(__dirname, './../uploads/') + fileName;
+    const filePath = path.join(__dirname, './../uploads/') + uplaodsName;
 
     console.log(filePath);
 
