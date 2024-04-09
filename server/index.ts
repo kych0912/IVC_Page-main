@@ -48,7 +48,7 @@ const whitelist = ['https://ivc-inha.co.kr','http://localhost:3000'];
 
 const corsOptions = {
   origin: function (origin:any, callback:any) { 
-    if (!origin||whitelist.indexOf(origin) !== -1) { 
+    if (whitelist.indexOf(origin) !== -1) { 
       callback(null, true); 
     } else {
       callback(new Error("Not Allowed Origin!")); 
