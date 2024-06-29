@@ -17,6 +17,9 @@
 ## Link
 [ivc-inha](https://ivc-inha.co.kr/)
 
+## 개발 기간
+2024.02 ~ 2024.03
+
 ## Api Docs
 [API Docs](https://github.com/kych0912/IVC_Page-main/tree/main/apidocs)
 
