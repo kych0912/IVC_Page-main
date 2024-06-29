@@ -3,6 +3,7 @@
 2023 년도 수정사항이 생기는 경우(지원서 양식 변경, 제출 링크 변경) 소스코드를 수정하여 다시 빌드 후 배포하였습니다.<br>
 <br>
 2024년도 새로운 운영진에 홈페이지 인수인계를 위해 문서를 작성하고 설명하는 과정에서 많은 비용이 발생하는 문제를 인지하였습니다.<br>
+<br>
 이를 해결하기 위해 관리자 페이지의 필요성을 느꼈고, Express 학습 후 관리자 페이지를 개발하였습니다. 
 
 ## 기술 스택
@@ -26,6 +27,8 @@ Backend - Express, TypeScript, Mysql
 > 관리자 페이지 (링크 수정)
 
 <img src="https://github.com/kych0912/IVC_Page-main/assets/102653189/685753e4-d06a-4a17-b4d2-0306d1573639" width="600" height="400"/>
+
+<img src="https://github.com/kych0912/IVC_Page-main/assets/102653189/bb5caa0a-d62b-44a0-b6c2-5baa909c8c8c" width="600" height="400"/>
 
 > 관리자 페이지 (파일 업로드)
 
