@@ -28,11 +28,12 @@ Backend - Express, TypeScript, Mysql
 
 <img src="https://github.com/kych0912/IVC_Page-main/assets/102653189/685753e4-d06a-4a17-b4d2-0306d1573639" width="600" height="400"/>
 
-<img src="https://github.com/kych0912/IVC_Page-main/assets/102653189/bb5caa0a-d62b-44a0-b6c2-5baa909c8c8c" width="600" height="400"/>
-
 > 관리자 페이지 (파일 업로드)
 
 <img src="https://github.com/kych0912/IVC_Page-main/assets/102653189/c06977df-5e4a-46a1-a460-d1f5e46a106c" width="600" height="400"/>
+
+<img src="https://github.com/kych0912/IVC_Page-main/assets/102653189/bb5caa0a-d62b-44a0-b6c2-5baa909c8c8c" width="600" height="400"/>
+
 
 > 관리자 페이지 (DB 삭제/수정)
 
