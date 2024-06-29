@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## 기획 의도
 
 2023 년도 수정사항이 생기는 경우(지원서 양식 변경, 제출 링크 변경) 소스코드를 수정하여 다시 빌드 후 배포하였습니다.<br>
@@ -38,6 +37,6 @@ Backend - Express, TypeScript, Mysql
 
 > 반응형 페이지
 
-|메인 페이지|로그인 페이지|관리자 페이지(링크 수정)|관리자 페이지(파일 업로드)|관리자 페이지(DB 삭제/수정)|
-|------|------|------|
-|![image](https://github.com/kych0912/IVC_Page-main/assets/102653189/9d937253-c002-494b-bb10-81cc2f917a6b)|![image](https://github.com/kych0912/IVC_Page-main/assets/102653189/3126f741-65ef-44b9-8e7a-56214a05c331)|테스트3|
+|메인 페이지|로그인 페이지| 관리자 페이지(링크 수정)|관리자 페이지(파일 업로드)|관리자 페이지(DB 삭제/수정)|
+|------|---|--------|---|----|
+|![image](https://github.com/kych0912/IVC_Page-main/assets/102653189/9d937253-c002-494b-bb10-81cc2f917a6b)|![image](https://github.com/kych0912/IVC_Page-main/assets/102653189/3126f741-65ef-44b9-8e7a-56214a05c331)|![image](https://github.com/kych0912/IVC_Page-main/assets/102653189/00f7f77e-7bcf-46f6-86d9-de5be8a7ef46)| ![image](https://github.com/kych0912/IVC_Page-main/assets/102653189/2d2d0c68-67d2-4b01-95ec-d7b942037c79)|![image](https://github.com/kych0912/IVC_Page-main/assets/102653189/1dec92e7-6d28-4f9c-878d-d185627e0e83)|
