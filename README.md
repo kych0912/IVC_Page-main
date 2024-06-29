@@ -8,9 +8,11 @@
 
 ## 기술 스택
 
-Frontend - React, JavaScript, React-query, Material UI, Axios
+### Frontend
+ - React, JavaScript, React-query, Material UI, Axios
 <br>
-Backend - Express, TypeScript, Mysql
+### Backend
+ - Express, TypeScript, Mysql
 
 ## Link
 [ivc-inha](https://ivc-inha.co.kr/)
